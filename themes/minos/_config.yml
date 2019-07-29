@@ -12,7 +12,7 @@ open_graph:
 # Website's logo shown on the left of the navigation bar.
 # It can either be an url to an image or a string if the following option is set.
 logo:
-  text: Gabriel Loewen, Ph.D
+  text: Drinking Through The Spheres, Crystal's Beers
 
 article:
   # Show word count and estimated reading time.
