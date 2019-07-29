@@ -26,9 +26,8 @@ nav:
 # only 'mail' is an exception.
 social_links:
   github: http://github.com/gabloe
-  twitter: /
-  facebook: /
-  linkedin: /
+  twitter: /gabriel_loewen
+  linkedin: /gabloe
   mail: mailto:gabrielloewen@outlook.com
 
 # Customize the overview with displaying a tagcloud on the index page.
@@ -75,7 +74,7 @@ logo:
   width: 50
   height: 50
   url: /images/logo.JPG
-  gravatar: false
+  gravatar: true
 
 # Customize the favicons.
 # Cactus supports a limited set of the three most important icons:
@@ -89,13 +88,13 @@ logo:
 favicon:
   desktop:
     url: /images/favicon.ico
-    gravatar: false
+    gravatar: true
   android:
     url: /images/favicon-192x192.png
-    gravatar: false
+    gravatar: true
   apple:
     url: /images/apple-touch-icon.png
-    gravatar: false
+    gravatar: true
 
 # The color scheme that should be used to highlight codeblocks.
 # See source/css/_highlight for a list of all available color schemes.
