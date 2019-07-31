@@ -21,6 +21,6 @@
     "marked": "^0.7.0"
   },
   "scripts": {
-    "build": "hexo clean && hexo generate && hexo deploy"
+    "build": "hexo clean && hexo generate && echo -n 'gabloe.com' >> public/CNAME && hexo deploy"
   }
 }
