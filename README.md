@@ -1,1 +1,1 @@
-[![Build Status](https://travis-ci.com/gabloe/website.svg?branch=source)](https://travis-ci.com/gabloe/website)
+[![Build Status](https://travis-ci.com/gabloe/gabloe.github.io.svg?branch=source)](https://travis-ci.com/gabloe/gabloe.github.io)
