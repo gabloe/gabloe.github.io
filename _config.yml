@@ -5,7 +5,7 @@
 # Site
 title: But Wait... There's More!
 subtitle:
-description: 
+description: Sometimes it is the people no one imagines anything of who do the things that no one can imagine.
 keywords:
 author: Dr. Gabriel Loewen
 language: en
@@ -75,7 +75,7 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: cactus
 theme_config:
-  colorscheme: black
+  colorscheme: white
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
