@@ -76,6 +76,10 @@ logo:
   height: 50
   url: /images/logo.JPG
   gravatar: true
+  
+titleImage:
+  url: /images/signature.JPG
+  height: 50
 
 # Customize the favicons.
 # Cactus supports a limited set of the three most important icons:
