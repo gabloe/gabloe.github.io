@@ -7,7 +7,8 @@
       <div id="logo" style="background-image: url(<%- url_for(theme.logo.url) %>);"></div>
     <% } %>
   <% } %>
-    <div id="title" style="background-image: url(<%- url_for(theme.titleImage.url) %>); background-size: auto <%- theme.titleImage.height %>;">
+    <div id="title">
+       <img src="<%- url_for(theme.titleImage.url) %>" height="<%- theme.titleImage.height %>">
     </div>
   </a>
   <div id="nav">
