@@ -12,4 +12,4 @@ I am one of those progressive liberals that you've been told to be afraid of. I 
 4. A "healthcare" industry that profits by ensuring that people remain sick
 5. The slow and torturous death of our planet
 
-Corporations are not people. The government should work for you.
+Corporations are not people. Your government should work for you.
