@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/nocturne-b36629b0-350c-453a-96de-c88b66b7e3aa/styles.css">
+<script src="_ds/nocturne-b36629b0-350c-453a-96de-c88b66b7e3aa/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: var(--color-bg); color: var(--color-text); text-wrap: pretty; }
+  a { color: var(--color-accent); text-decoration: none; }
+  a:hover { color: var(--color-accent-300); }
+  ::selection { background: var(--color-accent-800); }
+  @keyframes noct-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  @keyframes noct-breathe { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+</style>
+</helmet>
+
+<div style="position:relative; min-height:100%; background:radial-gradient(1200px 720px at 82% -180px, color-mix(in srgb, var(--color-accent-900) 78%, transparent), transparent 60%), radial-gradient(1100px 800px at -10% 100%, color-mix(in srgb, black 32%, transparent), transparent 55%), var(--color-bg); font-family:var(--font-body); overflow-x:hidden">
+
+  <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><rect width="120" height="120" fill="#161826"></rect><circle cx="60" cy="60" r="3" fill="#9184d9"></circle><circle cx="36" cy="42" r="2" fill="#9184d9"></circle><circle cx="84" cy="45" r="2" fill="#9184d9"></circle><circle cx="42" cy="80" r="2" fill="#9184d9"></circle><circle cx="80" cy="78" r="2" fill="#9184d9"></circle><g stroke="#9184d9" stroke-width="1" opacity=".5"><path d="M60 60 36 42M60 60 84 45M60 60 42 80M60 60 80 78"></path></g><text x="60" y="106" fill="#e9e9ed" font-family="Inter, sans-serif" font-size="14" font-weight="500" text-anchor="middle">GL</text></svg></template>
+  <div ref="{{ progressRef }}" aria-hidden="true" style="position:fixed; top:0; left:0; z-index:30; height:2px; width:0%; background:var(--color-accent); box-shadow:0 0 14px color-mix(in srgb, var(--color-accent) 70%, transparent)"></div>
+  <nav class="nav" style="position:sticky; top:0; z-index:20; backdrop-filter:blur(14px); background:color-mix(in srgb, var(--color-bg) 82%, transparent)">
+    <span class="nav-brand" style="letter-spacing:-0.01em">Gabriel Loewen</span>
+    <a href="#about" data-spy="about" style="transition:color .25s ease, transform .25s ease" style-hover="color:var(--color-accent); transform:translateY(-2px)">About</a>
+    <a href="#felix" data-spy="felix" style="transition:color .25s ease, transform .25s ease" style-hover="color:var(--color-accent); transform:translateY(-2px)">Felix</a>
+    <a href="#harbor" data-spy="harbor" style="transition:color .25s ease, transform .25s ease" style-hover="color:var(--color-accent); transform:translateY(-2px)">Pale Harbor</a>
+    <a href="#work" data-spy="work" style="transition:color .25s ease, transform .25s ease" style-hover="color:var(--color-accent); transform:translateY(-2px)">How I work</a>
+    <a href="#contact" data-spy="contact" style="transition:color .25s ease, transform .25s ease" style-hover="color:var(--color-accent); transform:translateY(-2px)">Contact</a>
+    <a class="btn btn-primary" href="https://github.com/gabloe" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+
+  <section style="position:relative; padding:clamp(64px,11vh,140px) var(--edge,clamp(20px,5vw,72px)) clamp(72px,12vh,150px); max-width:1200px; margin:0 auto">
+    <canvas ref="{{ skyRef }}" aria-hidden="true" style="position:absolute; inset:-40px 0 0 0; width:100%; height:calc(100% + 40px); pointer-events:none; opacity:.9"></canvas>
+    <div style="position:relative; display:flex; flex-direction:column; gap:28px; align-items:flex-start">
+      <span style="position:relative; display:inline-flex; align-items:center; gap:12px; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent)">
+        <span style="width:44px; height:1px; background:var(--color-accent); display:inline-block"></span>
+        Principal software engineer · Ph.D.
+      </span>
+      <h1 data-reveal="" aria-label="Gabriel Loewen" style="margin:0; font-family:var(--font-heading); font-weight:500; font-size:clamp(46px,8vw,108px); line-height:1.02; letter-spacing:-0.025em; margin-left:-0.055em; cursor:default">
+        <span style="display:block" aria-hidden="true">
+          <span style="display:inline-block; transition:transform .4s cubic-bezier(.22,1.4,.36,1), color .4s ease, text-shadow .4s ease" style-hover="transform:translateY(-10px); color:var(--color-accent); text-shadow:0 0 26px color-mix(in srgb, var(--color-accent) 60%, transparent)">G</span><span style="display:inline-block; transition:transform .4s cubic-bezier(.22,1.4,.36,1), color .4s ease, text-shadow .4s ease" style-hover="transform:translateY(-10px); color:var(--color-accent); text-shadow:0 0 26px color-mix(in srgb, var(--color-accent) 60%, transparent)">a</span><span style="display:inline-block; transition:transform .4s cubic-bezier(.22,1.4,.36,1), color .4s ease, text-shadow .4s ease" style-hover="transform:translateY(-10px); color:var(--color-accent); text-shadow:0 0 26px color-mix(in srgb, var(--color-accent) 60%, transparent)">b</span><span style="display:inline-block; transition:transform .4s cubic-bezier(.22,1.4,.36,1), color .4s ease, text-shadow .4s ease" style-hover="transform:translateY(-10px); color:var(--color-accent); text-shadow:0 0 26px color-mix(in srgb, var(--color-accent) 60%, transparent)">r</span><span style="display:inline-block; transition:transform .4s cubic-bezier(.22,1.4,.36,1), color .4s ease, text-shadow .4s ease" style-hover="transform:translateY(-10px); color:var(--color-accent); text-shadow:0 0 26px color-mix(in srgb, var(--color-accent) 60%, transparent)">i</span><span style="display:inline-block; transition:transform .4s cubic-bezier(.22,1.4,.36,1), color .4s ease, text-shadow .4s ease" style-hover="transform:translateY(-10px); color:var(--color-accent); text-shadow:0 0 26px color-mix(in srgb, var(--color-accent) 60%, transparent)">e</span><span style="display:inline-block; transition:transform .4s cubic-bezier(.22,1.4,.36,1), color .4s ease, text-shadow .4s ease" style-hover="transform:translateY(-10px); color:var(--color-accent); text-shadow:0 0 26px color-mix(in srgb, var(--color-accent) 60%, transparent)">l</span>
+        </span>
+        <span style="display:block" aria-hidden="true">
+          <span style="display:inline-block; transition:transform .4s cubic-bezier(.22,1.4,.36,1), color .4s ease, text-shadow .4s ease" style-hover="transform:translateY(-10px); color:var(--color-accent); text-shadow:0 0 26px color-mix(in srgb, var(--color-accent) 60%, transparent)">L</span><span style="display:inline-block; transition:transform .4s cubic-bezier(.22,1.4,.36,1), color .4s ease, text-shadow .4s ease" style-hover="transform:translateY(-10px); color:var(--color-accent); text-shadow:0 0 26px color-mix(in srgb, var(--color-accent) 60%, transparent)">o</span><span style="display:inline-block; transition:transform .4s cubic-bezier(.22,1.4,.36,1), color .4s ease, text-shadow .4s ease" style-hover="transform:translateY(-10px); color:var(--color-accent); text-shadow:0 0 26px color-mix(in srgb, var(--color-accent) 60%, transparent)">e</span><span style="display:inline-block; transition:transform .4s cubic-bezier(.22,1.4,.36,1), color .4s ease, text-shadow .4s ease" style-hover="transform:translateY(-10px); color:var(--color-accent); text-shadow:0 0 26px color-mix(in srgb, var(--color-accent) 60%, transparent)">w</span><span style="display:inline-block; transition:transform .4s cubic-bezier(.22,1.4,.36,1), color .4s ease, text-shadow .4s ease" style-hover="transform:translateY(-10px); color:var(--color-accent); text-shadow:0 0 26px color-mix(in srgb, var(--color-accent) 60%, transparent)">e</span><span style="display:inline-block; transition:transform .4s cubic-bezier(.22,1.4,.36,1), color .4s ease, text-shadow .4s ease" style-hover="transform:translateY(-10px); color:var(--color-accent); text-shadow:0 0 26px color-mix(in srgb, var(--color-accent) 60%, transparent)">n</span>
+        </span>
+      </h1>
+      <p data-reveal="" style="margin:0; font-size:19px; line-height:1.6; max-width:54ch; color:color-mix(in srgb, var(--color-text) 86%, transparent)">
+        I architect cloud and distributed systems, and I build them in Python and Rust. Pacific Northwest native, Ph.D. in computer science, happiest in the unglamorous parts: fanout, backpressure, tail latency.
+      </p>
+      <div data-reveal="" style="display:flex; gap:12px; flex-wrap:wrap">
+        <a class="btn btn-primary" href="#about">About me</a>
+        <a class="btn btn-ghost" href="https://github.com/gabloe" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p style="margin:0; font-size:13px; color:color-mix(in srgb, var(--color-text) 45%, transparent)">Drag your cursor through the field — the nodes will subscribe. Click anywhere to publish, or press P.</p>
+    </div>
+  </section>
+
+  <section id="about" style="padding:clamp(48px,8vh,96px) var(--edge,clamp(20px,5vw,72px)); max-width:1200px; margin:0 auto">
+    <div style="height:1px; background:linear-gradient(to right, transparent, var(--color-divider) 48px calc(100% - 48px), transparent); margin-bottom:clamp(40px,6vh,72px)"></div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:clamp(28px,4vw,72px); align-items:start">
+      <div style="display:flex; flex-direction:column; gap:16px">
+        <span style="font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent)">About</span>
+        <h2 data-reveal="" style="margin:0; font-family:var(--font-heading); font-weight:500; font-size:clamp(28px,3.4vw,42px); line-height:1.12; letter-spacing:-0.018em">Systems that stay honest under load</h2>
+      </div>
+      <div data-reveal="" style="display:flex; flex-direction:column; gap:22px; max-width:60ch">
+        <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 82%, transparent)">I've been at Microsoft since 2015, now as a principal software engineer, working on cloud and distributed systems architecture — the parts that have to keep working when a region, a dependency or a deploy decides otherwise. Born and raised in the Pacific Northwest and still here; the rain is good for staying indoors and reading flame graphs.</p>
+        <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 82%, transparent)">I build primarily in Python and Rust, and the work I like best sits close to the wire: protocols, transports, storage, and the moments where a system has to decide who gets slowed down. Right now that means Felix, where the design discipline is simple — if a guarantee can't be enforced in code, it isn't a guarantee.</p>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:4px">
+          <span class="tag tag-outline">Rust</span>
+          <span class="tag tag-outline">Python</span>
+          <span class="tag tag-outline">QUIC</span>
+          <span class="tag tag-outline">Cloud architecture</span>
+          <span class="tag tag-outline">Distributed systems</span>
+          <span class="tag tag-outline">Wire protocols</span>
+          <span class="tag tag-outline">Tail latency</span>
+        </div>
+      </div>
+    </div>
+
+    <figure data-reveal="" style="margin:clamp(36px,5vh,56px) 0 0; max-width:62ch">
+      <blockquote style="margin:0; font-family:var(--font-heading); font-weight:500; font-size:19px; line-height:1.55; letter-spacing:-0.008em; text-indent:-0.474em; color:color-mix(in srgb, var(--color-text) 88%, transparent)">“I am the person who helps answer the big questions about distributed systems, service oriented architecture, and microservice design.”</blockquote>
+    </figure>
+
+    <div data-reveal="" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:1px; background:var(--color-divider); border-radius:var(--radius-md); overflow:hidden; margin-top:clamp(40px,6vh,72px)">
+      <div style="background:var(--color-surface); padding:26px 24px; display:flex; flex-direction:column; gap:10px">
+        <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent); font-feature-settings:'tnum' 1">2015 — present</span>
+        <span style="font-family:var(--font-heading); font-weight:500; font-size:20px; letter-spacing:-0.012em">Principal Software Engineer</span>
+        <span style="font-size:15px; color:color-mix(in srgb, var(--color-text) 70%, transparent)">Microsoft Corporation</span>
+      </div>
+      <div style="background:var(--color-surface); padding:26px 24px; display:flex; flex-direction:column; gap:10px">
+        <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent); font-feature-settings:'tnum' 1">2015</span>
+        <span style="font-family:var(--font-heading); font-weight:500; font-size:20px; letter-spacing:-0.012em">Ph.D., Computer Science</span>
+        <span style="font-size:15px; color:color-mix(in srgb, var(--color-text) 70%, transparent)">The University of Alabama. Dissertation on the IaaS cloud vertical: optimizing local private-cloud deployment strategy for non-profit organizations.</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="felix" style="padding:clamp(48px,8vh,96px) var(--edge,clamp(20px,5vw,72px)); max-width:1200px; margin:0 auto">
+    <div style="height:1px; background:linear-gradient(to right, transparent, var(--color-divider) 48px calc(100% - 48px), transparent); margin-bottom:clamp(40px,6vh,72px)"></div>
+    <span style="font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent)">What I'm building now</span>
+    <div data-reveal="" style="display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(28px,4vw,56px); margin-top:24px">
+      <div style="display:flex; flex-direction:column; gap:20px; max-width:64ch">
+        <h2 style="margin:0; font-family:var(--font-heading); font-weight:500; font-size:clamp(34px,4.6vw,60px); line-height:1.08; letter-spacing:-0.02em; margin-left:-0.04em">Felix</h2>
+        <p style="margin:0; font-size:17px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 84%, transparent)">A QUIC-based data broker in Rust: low-latency pub/sub, a key-value cache, and a durable event log with resumable subscriptions.</p>
+        <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 72%, transparent)">Built for high fanout, predictable tail latency, and strict slow-consumer isolation — one subscriber having a bad day should not become everybody's problem. A framed binary protocol over QUIC streams unifies event streaming and request/response caching, with explicit control over multiplexing, batching, and flow control. Single-node today; multi-node clustering in progress.</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:4px">
+          <a class="btn btn-primary" href="https://github.com/gabloe/felix" target="_blank" rel="noopener">Source on GitHub</a>
+          <a class="btn btn-ghost" href="https://gabloe.github.io/felix" target="_blank" rel="noopener">Documentation</a>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:1px; background:var(--color-divider); border-radius:var(--radius-md); overflow:hidden">
+        <div style="background:var(--color-surface); padding:22px 20px; display:flex; flex-direction:column; gap:8px">
+          <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">Role</span>
+          <span style="font-size:17px; font-family:var(--font-heading); font-weight:500">Author</span>
+        </div>
+        <div style="background:var(--color-surface); padding:22px 20px; display:flex; flex-direction:column; gap:8px">
+          <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">Built with</span>
+          <span style="font-size:17px; font-family:var(--font-heading); font-weight:500">Rust · QUIC · TLS 1.3</span>
+        </div>
+        <div style="background:var(--color-surface); padding:22px 20px; display:flex; flex-direction:column; gap:8px">
+          <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">License</span>
+          <span style="font-size:17px; font-family:var(--font-heading); font-weight:500; font-feature-settings:'tnum' 1">Apache-2.0 · ELv2</span>
+        </div>
+        <div style="background:var(--color-surface); padding:22px 20px; display:flex; flex-direction:column; gap:8px">
+          <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">Status</span>
+          <span style="font-size:17px; font-family:var(--font-heading); font-weight:500">Early active development</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="harbor" style="padding:clamp(48px,8vh,96px) var(--edge,clamp(20px,5vw,72px)); max-width:1200px; margin:0 auto">
+    <div style="height:1px; background:linear-gradient(to right, transparent, var(--color-divider) 48px calc(100% - 48px), transparent); margin-bottom:clamp(40px,6vh,72px)"></div>
+    <span style="font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent)">Also built</span>
+    <div data-reveal="" style="display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(28px,4vw,48px); margin-top:24px">
+      <div style="display:flex; flex-direction:column; gap:18px; max-width:64ch">
+        <h2 style="margin:0; font-family:var(--font-heading); font-weight:500; font-size:clamp(28px,3.6vw,46px); line-height:1.1; letter-spacing:-0.02em; margin-left:-0.04em">The Pale Harbor</h2>
+        <p style="margin:0; font-size:17px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 84%, transparent)">A 2D psychological horror game set in a fog-shrouded coastal town, where you play the lighthouse keeper investigating your predecessor's disappearance.</p>
+        <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 72%, transparent)">Top-down exploration with a sanity system that distorts what you see, read and hear as it drains — hallucinations at low sanity, a day/night cycle that raises the supernatural activity after dark, and procedurally generated ambient audio. Built on HTML5 Canvas and the Web Audio API, which is a different kind of latency problem: everything has to land inside a frame.</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:4px">
+          <a class="btn btn-primary" href="https://github.com/gabloe/the-pale-harbor" target="_blank" rel="noopener">Source on GitHub</a>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:1px; background:var(--color-divider); border-radius:var(--radius-md); overflow:hidden">
+        <div style="background:var(--color-surface); padding:22px 20px; display:flex; flex-direction:column; gap:8px">
+          <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">ROLE</span>
+          <span style="font-size:17px; font-family:var(--font-heading); font-weight:500">Author</span>
+        </div>
+        <div style="background:var(--color-surface); padding:22px 20px; display:flex; flex-direction:column; gap:8px">
+          <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">Built with</span>
+          <span style="font-size:17px; font-family:var(--font-heading); font-weight:500">Canvas · Web Audio</span>
+        </div>
+        <div style="background:var(--color-surface); padding:22px 20px; display:flex; flex-direction:column; gap:8px">
+          <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">Genre</span>
+          <span style="font-size:17px; font-family:var(--font-heading); font-weight:500">Psychological horror</span>
+        </div>
+        <div style="background:var(--color-surface); padding:22px 20px; display:flex; flex-direction:column; gap:8px">
+          <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">Plays in</span>
+          <span style="font-size:17px; font-family:var(--font-heading); font-weight:500">The browser</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" style="padding:clamp(48px,8vh,96px) var(--edge,clamp(20px,5vw,72px)) clamp(64px,9vh,120px); max-width:1200px; margin:0 auto">
+    <div style="height:1px; background:linear-gradient(to right, transparent, var(--color-divider) 48px calc(100% - 48px), transparent); margin-bottom:clamp(40px,6vh,72px)"></div>
+    <span style="font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent)">How I work</span>
+    <h2 data-reveal="" style="margin:20px 0 0; font-family:var(--font-heading); font-weight:500; font-size:clamp(26px,3vw,36px); line-height:1.15; letter-spacing:-0.015em">Three decisions I'd defend</h2>
+    <p data-reveal="" style="margin:14px 0 0; font-size:16px; line-height:1.7; max-width:56ch; color:color-mix(in srgb, var(--color-text) 74%, transparent)">Taken from Felix, where I get to make all of them. Open one.</p>
+    <div style="display:flex; flex-direction:column; margin-top:28px">
+
+      <div data-project="" data-reveal="" style="position:relative">
+        <button type="button" onClick="{{ toggleDetail }}" style="width:100%; background:transparent; border:0; border-top:1px solid var(--color-neutral-800); cursor:pointer; text-align:left; color:var(--color-text); font-family:var(--font-body); padding:26px 0; display:grid; grid-template-columns:56px minmax(0,1fr) auto; gap:clamp(16px,3vw,48px); align-items:baseline; transition:opacity .2s ease" style-hover="opacity:.72">
+          <span style="font-family:var(--font-heading); font-weight:500; font-size:14px; color:var(--color-accent); font-feature-settings:'tnum' 1">01</span>
+          <span style="display:flex; flex-direction:column; gap:8px">
+            <span style="font-family:var(--font-heading); font-weight:500; font-size:clamp(20px,2.4vw,26px); letter-spacing:-0.012em">Fanout that encodes once</span>
+            <span style="font-size:15px; line-height:1.6; color:color-mix(in srgb, var(--color-text) 70%, transparent); max-width:52ch">A publish batch is encoded one time, no matter how many subscribers are listening.</span>
+          </span>
+          <span data-chev="" style="font-size:22px; line-height:1; color:var(--color-accent); transition:transform .3s ease; display:inline-block">+</span>
+        </button>
+        <div data-detail="" style="overflow:hidden; max-height:0; opacity:0; transition:max-height .45s ease, opacity .3s ease">
+          <p style="margin:0 0 26px; padding-left:clamp(0px,4vw,104px); font-size:15px; line-height:1.7; max-width:56ch; color:color-mix(in srgb, var(--color-text) 78%, transparent)">The broker enqueues publish jobs and fans out over a shared-frame path with dense stream handles on the hot path, so per-subscriber cost stays close to a write. Each subscription gets its own unidirectional delivery stream, and byte-budgeted admission control at both client and broker ingest keeps a slow consumer from backing up into everyone else.</p>
+        </div>
+      </div>
+
+      <div data-project="" data-reveal="" style="position:relative">
+        <button type="button" onClick="{{ toggleDetail }}" style="width:100%; background:transparent; border:0; border-top:1px solid var(--color-neutral-800); cursor:pointer; text-align:left; color:var(--color-text); font-family:var(--font-body); padding:26px 0; display:grid; grid-template-columns:56px minmax(0,1fr) auto; gap:clamp(16px,3vw,48px); align-items:baseline; transition:opacity .2s ease" style-hover="opacity:.72">
+          <span style="font-family:var(--font-heading); font-weight:500; font-size:14px; color:var(--color-accent); font-feature-settings:'tnum' 1">02</span>
+          <span style="display:flex; flex-direction:column; gap:8px">
+            <span style="font-family:var(--font-heading); font-weight:500; font-size:clamp(20px,2.4vw,26px); letter-spacing:-0.012em">Cache without stream setup costs</span>
+            <span style="font-size:15px; line-height:1.6; color:color-mix(in srgb, var(--color-text) 70%, transparent); max-width:52ch">Long-lived stream workers, request IDs, and multiplexing instead of a stream per request.</span>
+          </span>
+          <span data-chev="" style="font-size:22px; line-height:1; color:var(--color-accent); transition:transform .3s ease; display:inline-block">+</span>
+        </button>
+        <div data-detail="" style="overflow:hidden; max-height:0; opacity:0; transition:max-height .45s ease, opacity .3s ease">
+          <p style="margin:0 0 26px; padding-left:clamp(0px,4vw,104px); font-size:15px; line-height:1.7; max-width:56ch; color:color-mix(in srgb, var(--color-text) 78%, transparent)">Clients hold a connection pool of long-lived stream workers; cache requests carry a request ID and multiplex over them, and the broker answers on the same stream from a single read loop. Put and get with TTL, log-backed and durable when the broker has a storage directory — the same protocol that carries events, so there is one envelope to reason about.</p>
+        </div>
+      </div>
+
+      <div data-project="" data-reveal="" style="position:relative; border-bottom:1px solid var(--color-neutral-800)">
+        <button type="button" onClick="{{ toggleDetail }}" style="width:100%; background:transparent; border:0; border-top:1px solid var(--color-neutral-800); cursor:pointer; text-align:left; color:var(--color-text); font-family:var(--font-body); padding:26px 0; display:grid; grid-template-columns:56px minmax(0,1fr) auto; gap:clamp(16px,3vw,48px); align-items:baseline; transition:opacity .2s ease" style-hover="opacity:.72">
+          <span style="font-family:var(--font-heading); font-weight:500; font-size:14px; color:var(--color-accent); font-feature-settings:'tnum' 1">03</span>
+          <span style="display:flex; flex-direction:column; gap:8px">
+            <span style="font-family:var(--font-heading); font-weight:500; font-size:clamp(20px,2.4vw,26px); letter-spacing:-0.012em">A conformance suite that keeps clients honest</span>
+            <span style="font-size:15px; line-height:1.6; color:color-mix(in srgb, var(--color-text) 70%, transparent); max-width:52ch">Shared test vectors for the wire format, so interop isn't a guessing game.</span>
+          </span>
+          <span data-chev="" style="font-size:22px; line-height:1; color:var(--color-accent); transition:transform .3s ease; display:inline-block">+</span>
+        </button>
+        <div data-detail="" style="overflow:hidden; max-height:0; opacity:0; transition:max-height .45s ease, opacity .3s ease">
+          <p style="margin:0 0 26px; padding-left:clamp(0px,4vw,104px); font-size:15px; line-height:1.7; max-width:56ch; color:color-mix(in srgb, var(--color-text) 78%, transparent)">A standalone runner validates that framing and binary encoding match the shared test vectors. Anything that passes can interoperate without relying on Rust-specific behavior — which is also why the wire protocol, client SDK and transport are Apache-2.0 while the server components are source-available under ELv2.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contact" style="background:radial-gradient(900px 420px at 85% -30%, color-mix(in srgb, var(--color-section-glow) 70%, transparent), transparent 64%), var(--color-section)">
+    <div style="max-width:1200px; margin:0 auto; padding:clamp(56px,9vh,110px) var(--edge,clamp(20px,5vw,72px)); display:flex; flex-direction:column; gap:24px; align-items:flex-start">
+      <span style="font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 70%, transparent)">Contact</span>
+      <h2 data-reveal="" style="margin:0; font-family:var(--font-heading); font-weight:500; font-size:clamp(30px,4.2vw,54px); line-height:1.1; letter-spacing:-0.02em; margin-left:-0.04em">Say hello.</h2>
+      <p data-reveal="" style="margin:0; font-size:16px; line-height:1.7; max-width:48ch; color:color-mix(in srgb, var(--color-text) 82%, transparent)">Issues, pull requests and opinions about backpressure are all welcome. GitHub is the fastest way to reach me.</p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:4px">
+        <a class="btn btn-primary" href="https://github.com/gabloe" target="_blank" rel="noopener">github.com/gabloe</a>
+      </div>
+      <p style="margin:4px 0 0; font-size:14px; color:color-mix(in srgb, var(--color-text) 62%, transparent)">Résumé available on request.</p>
+    </div>
+  </section>
+
+  <footer style="max-width:1200px; margin:0 auto; padding:36px var(--edge,clamp(20px,5vw,72px)); font-size:13px; color:color-mix(in srgb, var(--color-text) 50%, transparent); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap">
+    <span>© 2026 Gabriel Loewen</span>
+    <span>Built in the dark, in the Pacific Northwest.</span>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;starDensity&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1,&quot;min&quot;:0.2,&quot;max&quot;:2,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+class Component extends DCLogic {
+  state = { fanout: 25 };
+
+  constructor(p) {
+    super(p);
+    this.skyRef = React.createRef();
+    this.progressRef = React.createRef();
+    this.toggleDetail = (e) => {
+      const wrap = e.currentTarget.closest('[data-project]');
+      if (!wrap) return;
+      const detail = wrap.querySelector('[data-detail]');
+      const chev = wrap.querySelector('[data-chev]');
+      const open = detail.style.maxHeight && detail.style.maxHeight !== '0px';
+      detail.style.maxHeight = open ? '0px' : detail.scrollHeight + 'px';
+      detail.style.opacity = open ? '0' : '1';
+      if (chev) chev.style.transform = open ? 'rotate(0deg)' : 'rotate(45deg)';
+    };
+  }
+
+  componentDidMount() {
+    const root = this.skyRef.current && this.skyRef.current.closest('div');
+    this._reveal(root);
+    this._sky();
+    this._spy();
+    this._spotlight();
+  }
+
+  componentWillUnmount() {
+    this._alive = false;
+    if (this._io) this._io.disconnect();
+    if (this._onScroll) removeEventListener('scroll', this._onScroll);
+    if (this._onMove) removeEventListener('pointermove', this._onMove);
+    if (this._onResize) removeEventListener('resize', this._onResize);
+    if (this._pulseHost && this._onClick) this._pulseHost.removeEventListener('pointerdown', this._onClick);
+    if (this._onKey) removeEventListener('keydown', this._onKey);
+  }
+
+  _reveal() {
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+    els.forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(16px)';
+      el.style.transition = 'opacity .7s cubic-bezier(.22,.61,.36,1) ' + (i % 4) * 0.06 + 's, transform .7s cubic-bezier(.22,.61,.36,1) ' + (i % 4) * 0.06 + 's';
+    });
+    const show = (el) => { el.style.opacity = '1'; el.style.transform = 'none'; };
+    this._io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => { if (en.isIntersecting) { show(en.target); this._io.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    els.forEach((el) => this._io.observe(el));
+    setTimeout(() => els.forEach(show), 2500);
+  }
+
+  _spy() {
+    const links = Array.from(document.querySelectorAll('[data-spy]'));
+    if (!links.length) return;
+    let raf = 0;
+    this._onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const doc = document.documentElement;
+        const max = Math.max(1, doc.scrollHeight - innerHeight);
+        const y = doc.scrollTop || document.body.scrollTop || 0;
+        if (this.progressRef.current) this.progressRef.current.style.width = Math.min(100, (y / max) * 100).toFixed(2) + '%';
+        const h1 = document.querySelector('h1[aria-label]');
+        if (h1 && y < innerHeight) {
+          h1.style.transform = 'translateY(' + (y * 0.08).toFixed(1) + 'px)';
+          h1.style.letterSpacing = (-0.025 + Math.min(0.02, y / innerHeight * 0.02)).toFixed(4) + 'em';
+        }
+        let active = null;
+        links.forEach((a) => {
+          const sec = document.getElementById(a.getAttribute('data-spy'));
+          if (sec && sec.getBoundingClientRect().top < innerHeight * 0.4) active = a;
+        });
+        links.forEach((a) => {
+          const on = a === active;
+          a.style.color = on ? 'var(--color-accent)' : '';
+          a.style.opacity = on ? '1' : '';
+        });
+      });
+    };
+    addEventListener('scroll', this._onScroll, { passive: true });
+    this._onScroll();
+  }
+
+  _sky() {
+    const cv = this.skyRef.current;
+    if (!cv) return;
+    const ctx = cv.getContext('2d');
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const accent = getComputedStyle(document.body).getPropertyValue('--color-accent').trim() || '#9184d9';
+    const rgb = (hex) => {
+      const h = hex.replace('#', '');
+      const n = parseInt(h.length === 3 ? h.split('').map(c => c + c).join('') : h, 16);
+      return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+    };
+    const [ar, ag, ab] = rgb(accent.startsWith('#') ? accent : '#9184d9');
+    let w = 0, h = 0, dpr = Math.min(devicePixelRatio || 1, 2);
+    const density = Number(this.props.starDensity ?? 1);
+    let pts = [];
+    const seed = () => {
+      const count = Math.max(24, Math.min(150, Math.round((w * h) / 16000 * density)));
+      pts = Array.from({ length: count }, () => ({
+        x: Math.random() * w, y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.16, vy: (Math.random() - 0.5) * 0.16,
+        r: Math.random() * 1.3 + 0.5, tw: Math.random() * Math.PI * 2
+      }));
+    };
+    const size = () => {
+      const r = cv.getBoundingClientRect();
+      w = r.width; h = r.height;
+      cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      seed();
+    };
+    size();
+    this._onResize = size;
+    addEventListener('resize', this._onResize);
+
+    const m = { x: -9999, y: -9999 };
+    this._onMove = (e) => {
+      const r = cv.getBoundingClientRect();
+      m.x = e.clientX - r.left; m.y = e.clientY - r.top;
+    };
+    addEventListener('pointermove', this._onMove, { passive: true });
+
+    const pulses = [];
+    const host = cv.parentElement;
+    this._onClick = (e) => {
+      const r = cv.getBoundingClientRect();
+      const x = e.clientX - r.left, y = e.clientY - r.top;
+      if (x < 0 || y < 0 || x > w || y > h) return;
+      pulses.push({ x, y, r: 0 });
+      if (pulses.length > 6) pulses.shift();
+    };
+    if (host) host.addEventListener('pointerdown', this._onClick);
+    this._pulseHost = host;
+    this._onKey = (e) => {
+      const tag = e.target && e.target.tagName;
+      if (e.metaKey || e.ctrlKey || e.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test(tag || '')) return;
+      if (e.key === 'p' || e.key === 'P') {
+        pulses.push({ x: Math.random() * w, y: Math.random() * h, r: 0 });
+        if (pulses.length > 6) pulses.shift();
+      }
+    };
+    addEventListener('keydown', this._onKey);
+
+    this._alive = true;
+    const frame = (t) => {
+      if (!this._alive) return;
+      ctx.clearRect(0, 0, w, h);
+      for (const p of pts) {
+        if (!reduce) {
+          p.x += p.vx; p.y += p.vy;
+          const dx = m.x - p.x, dy = m.y - p.y, d2 = dx * dx + dy * dy;
+          if (d2 < 26000 && d2 > 1) { const f = 0.00032; p.vx += dx * f; p.vy += dy * f; }
+          p.vx *= 0.994; p.vy *= 0.994;
+          if (p.x < -20) p.x = w + 20; if (p.x > w + 20) p.x = -20;
+          if (p.y < -20) p.y = h + 20; if (p.y > h + 20) p.y = -20;
+        }
+        let lit = 0;
+        for (const q of pulses) {
+          const d = Math.abs(Math.hypot(p.x - q.x, p.y - q.y) - q.r);
+          if (d < 46) lit = Math.max(lit, (1 - d / 46) * (1 - q.r / 900));
+        }
+        const a = Math.min(1, 0.35 + 0.3 * Math.sin(t / 1400 + p.tw) + lit * 0.9);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r + lit * 2.6, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + ar + ',' + ag + ',' + ab + ',' + a.toFixed(3) + ')';
+        ctx.fill();
+        if (lit > 0.25) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r + 7 * lit, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(' + ar + ',' + ag + ',' + ab + ',' + (0.14 * lit).toFixed(3) + ')';
+          ctx.fill();
+        }
+      }
+      for (let k = pulses.length - 1; k >= 0; k--) {
+        const q = pulses[k];
+        q.r += 7.5;
+        const fade = 1 - q.r / 900;
+        if (fade <= 0) { pulses.splice(k, 1); continue; }
+        ctx.beginPath();
+        ctx.arc(q.x, q.y, q.r, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(' + ar + ',' + ag + ',' + ab + ',' + (0.3 * fade).toFixed(3) + ')';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+      }
+      for (let i = 0; i < pts.length; i++) {
+        for (let j = i + 1; j < pts.length; j++) {
+          const a = pts[i], b = pts[j];
+          const dx = a.x - b.x, dy = a.y - b.y, d = Math.hypot(dx, dy);
+          if (d < 108) {
+            ctx.strokeStyle = 'rgba(' + ar + ',' + ag + ',' + ab + ',' + (0.16 * (1 - d / 108)).toFixed(3) + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+          }
+        }
+      }
+      if (m.x > -999) {
+        for (const p of pts) {
+          const d = Math.hypot(m.x - p.x, m.y - p.y);
+          if (d < 170) {
+            ctx.strokeStyle = 'rgba(' + ar + ',' + ag + ',' + ab + ',' + (0.4 * (1 - d / 170)).toFixed(3) + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(m.x, m.y); ctx.lineTo(p.x, p.y); ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+
+  _spotlight() {
+    document.querySelectorAll('[data-project]').forEach((row) => {
+      const on = (e) => {
+        const r = row.getBoundingClientRect();
+        row.style.background = 'radial-gradient(420px 120px at ' + (e.clientX - r.left) + 'px ' + (e.clientY - r.top) + 'px, color-mix(in srgb, var(--color-accent-900) 70%, transparent), transparent 70%)';
+      };
+      row.style.transition = 'transform .4s cubic-bezier(.22,.61,.36,1)';
+      row.addEventListener('pointermove', on);
+      row.addEventListener('pointerenter', () => { row.style.transform = 'translateX(8px)'; });
+      row.addEventListener('pointerleave', () => {
+        row.style.background = 'transparent';
+        row.style.transform = 'none';
+      });
+    });
+  }
+
+  renderVals() {
+    return { skyRef: this.skyRef, progressRef: this.progressRef, toggleDetail: this.toggleDetail };
+  }
+}
+</script>
+</body>
+</html>
