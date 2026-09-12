@@ -36,6 +36,16 @@
     "@type": "Organization",
     "name": "Microsoft"
   },
+  "hasOccupation": {
+    "@type": "Role",
+    "roleName": "Principal Software Engineer",
+    "startDate": "2015",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Microsoft"
+    },
+    "description": "Internal platforms, provisioning, and hardware lifecycle automation supporting Microsoft hybrid-cloud products including Azure Local, Azure Stack Hub, and hybrid AKS."
+  },
   "alumniOf": {
     "@type": "CollegeOrUniversity",
     "name": "The University of Alabama"
@@ -476,7 +486,7 @@
         </span>
       </h1>
       <p data-reveal="" style="margin:0; font-size:19px; line-height:1.6; max-width:54ch; color:color-mix(in srgb, var(--color-text) 86%, transparent)">
-        I architect cloud and distributed systems, and I build them in Python and Rust. Pacific Northwest native, Ph.D. in computer science, happiest in the unglamorous parts: fanout, backpressure, tail latency.
+        Eleven years at Microsoft building the platforms other engineering teams build on &mdash; the infrastructure behind Azure Local, Azure Stack Hub, and hybrid AKS. In my own time I write distributed systems in Rust. Pacific Northwest native, Ph.D. in computer science, happiest in the unglamorous parts: fanout, backpressure, tail latency.
       </p>
       <div data-reveal="" style="display:flex; gap:12px; flex-wrap:wrap">
         <a class="btn btn-primary" href="#about">About me</a>
@@ -515,12 +525,26 @@
     <article data-reveal="" style="margin-top:clamp(36px,5vh,56px); padding:clamp(24px,4vw,36px); border-left:2px solid var(--color-accent); border-radius:0 var(--radius-lg) var(--radius-lg) 0; background:linear-gradient(105deg, color-mix(in srgb, var(--color-accent-900) 42%, var(--color-surface)), var(--color-surface) 58%)">
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:clamp(24px,4vw,56px); align-items:start">
         <div>
-          <span style="font-size:12px; letter-spacing:0.07em; text-transform:uppercase; color:var(--color-accent)">At Microsoft</span>
+          <span style="font-size:12px; letter-spacing:0.07em; text-transform:uppercase; color:var(--color-accent)">At Microsoft &middot; eleven years</span>
           <h3 style="margin:14px 0 0; font-family:var(--font-heading); font-weight:500; font-size:clamp(24px,3vw,34px); line-height:1.15; letter-spacing:-0.018em">Building the systems behind the systems</h3>
+          <dl style="margin:24px 0 0; display:grid; gap:16px">
+            <div>
+              <dt style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">Shipping products built on it</dt>
+              <dd style="margin:6px 0 0; font-family:var(--font-heading); font-weight:500; font-size:17px; line-height:1.4">Azure Local &middot; Azure Stack Hub &middot; Hybrid AKS</dd>
+            </div>
+            <div>
+              <dt style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">Discipline</dt>
+              <dd style="margin:6px 0 0; font-family:var(--font-heading); font-weight:500; font-size:17px; line-height:1.4">Engineering systems &mdash; CI, pipelines, developer platforms</dd>
+            </div>
+            <div>
+              <dt style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">Level</dt>
+              <dd style="margin:6px 0 0; font-family:var(--font-heading); font-weight:500; font-size:17px; line-height:1.4">Principal engineer, individual contributor</dd>
+            </div>
+          </dl>
         </div>
         <div style="display:flex; flex-direction:column; gap:18px">
-          <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 80%, transparent)">I build internal platforms, services, and frameworks that let engineering teams provision, manage, and validate local and cloud infrastructure at scale. The work spans full-stack test environments, physical infrastructure lifecycle automation, and repeatable development workflows designed to be both scalable and cost-conscious.</p>
-          <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 72%, transparent)">These capabilities support teams building hybrid-cloud products including Azure Local, Azure Stack Hub, and hybrid AKS solutions. My focus is making difficult infrastructure easier to consume: dependable APIs, automation that removes operational work, and platforms that help developers spend more time on their product.</p>
+          <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 80%, transparent)">The hybrid-cloud products Microsoft ships &mdash; Azure Local, Azure Stack Hub, hybrid AKS &mdash; are built, tested, and released through engineering systems I design and run. Eleven years of continuous integration work, now at the scale where it is a service-oriented platform rather than a product&rsquo;s pipelines: the provisioning, the test environments, and the hardware lifecycle automation those teams depend on and should never have to think about.</p>
+          <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 72%, transparent)">That means full-stack test environments, physical infrastructure lifecycle automation, and repeatable development workflows built to be scalable and cost-conscious. The point of all of it is to make difficult infrastructure easy to consume: dependable APIs, automation that removes operational work, and platforms that give engineers their time back.</p>
           <div style="display:flex; gap:8px; flex-wrap:wrap">
             <span class="tag tag-outline">Infrastructure automation</span>
             <span class="tag tag-outline">Dev/test platforms</span>
@@ -532,16 +556,50 @@
       </div>
     </article>
 
-    <div data-reveal="" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:1px; background:var(--color-divider); border-radius:var(--radius-md); overflow:hidden; margin-top:clamp(40px,6vh,72px)">
-      <div style="background:var(--color-surface); padding:26px 24px; display:flex; flex-direction:column; gap:10px">
-        <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent); font-feature-settings:'tnum' 1">2015 — present</span>
-        <span style="font-family:var(--font-heading); font-weight:500; font-size:20px; letter-spacing:-0.012em">Principal Software Engineer</span>
-        <span style="font-size:15px; color:color-mix(in srgb, var(--color-text) 70%, transparent)">Microsoft Corporation</span>
-      </div>
+    <div data-reveal="" style="margin-top:clamp(40px,6vh,72px)">
+      <span style="font-size:12px; letter-spacing:0.07em; text-transform:uppercase; color:var(--color-accent)">Eleven years, four levels, one job</span>
+      <p style="margin:14px 0 0; font-size:16px; line-height:1.7; max-width:64ch; color:color-mix(in srgb, var(--color-text) 78%, transparent)">The discipline has not changed once: continuous integration, pipelines, and the frameworks around them &mdash; the systems other engineers ship on. What changed is the blast radius. One driver&rsquo;s CI, then one product&rsquo;s, then two, then an organisation&rsquo;s, which needed a different architecture to hold.</p>
+      <ol style="margin:28px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:1px; background:var(--color-divider); border-radius:var(--radius-md); overflow:hidden">
+        <li style="background:var(--color-surface); padding:24px; display:grid; grid-template-columns:minmax(150px,190px) 1fr; gap:clamp(16px,3vw,32px); align-items:baseline">
+          <span style="display:block; font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent); font-feature-settings:'tnum' 1">Aug 2015 &mdash; Mar 2016</span>
+          <span>
+            <strong style="display:block; font-family:var(--font-heading); font-weight:500; font-size:19px; letter-spacing:-0.012em">Software Engineer</strong>
+            <span style="display:block; margin-top:6px; font-size:13px; letter-spacing:0.04em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 52%, transparent)">One driver&rsquo;s CI &middot; OpenStack Hyper-V</span>
+            <span style="display:block; margin-top:10px; font-size:15px; line-height:1.65; color:color-mix(in srgb, var(--color-text) 72%, transparent)">Continuous integration, testing, and metrics for the OpenStack Hyper-V driver. I had interned on that CI Lab team the summer before, building the tooling that measured which submitted patches passed and which broke, then came back to own it. The Jenkins PowerShell contribution further down this page came out of this work: a gap in the tooling I needed, fixed upstream rather than worked around.</span>
+          </span>
+        </li>
+        <li style="background:var(--color-surface); padding:24px; display:grid; grid-template-columns:minmax(150px,190px) 1fr; gap:clamp(16px,3vw,32px); align-items:baseline">
+          <span style="display:block; font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent); font-feature-settings:'tnum' 1">Mar 2016 &mdash; Dec 2020</span>
+          <span>
+            <strong style="display:block; font-family:var(--font-heading); font-weight:500; font-size:19px; letter-spacing:-0.012em">Software Engineer II</strong>
+            <span style="display:block; margin-top:6px; font-size:13px; letter-spacing:0.04em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 52%, transparent)">One product&rsquo;s CI &middot; Azure Stack</span>
+            <span style="display:block; margin-top:10px; font-size:15px; line-height:1.65; color:color-mix(in srgb, var(--color-text) 72%, transparent)">Nearly five years on the continuous integration systems, pipelines, and frameworks that Azure Stack was built and validated on. Hybrid infrastructure ships into a customer&rsquo;s datacentre, which changes what an escaped defect costs and therefore what the pipeline has to catch.</span>
+          </span>
+        </li>
+        <li style="background:var(--color-surface); padding:24px; display:grid; grid-template-columns:minmax(150px,190px) 1fr; gap:clamp(16px,3vw,32px); align-items:baseline">
+          <span style="display:block; font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent); font-feature-settings:'tnum' 1">Dec 2020 &mdash; Aug 2024</span>
+          <span>
+            <strong style="display:block; font-family:var(--font-heading); font-weight:500; font-size:19px; letter-spacing:-0.012em">Senior Software Engineer</strong>
+            <span style="display:block; margin-top:6px; font-size:13px; letter-spacing:0.04em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 52%, transparent)">Two products&rsquo; CI &middot; Azure Stack Hub, Azure Stack HCI</span>
+            <span style="display:block; margin-top:10px; font-size:15px; line-height:1.65; color:color-mix(in srgb, var(--color-text) 72%, transparent)">The same discipline across two hybrid-cloud products at once, as Azure Stack HCI &mdash; now Azure Local &mdash; grew up alongside Hub. Two products sharing engineering systems is where the pipelines stop being a product&rsquo;s tooling and start being a platform.</span>
+          </span>
+        </li>
+        <li style="background:var(--color-surface); padding:24px; display:grid; grid-template-columns:minmax(150px,190px) 1fr; gap:clamp(16px,3vw,32px); align-items:baseline">
+          <span style="display:block; font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent); font-feature-settings:'tnum' 1">Aug 2024 &mdash; present</span>
+          <span>
+            <strong style="display:block; font-family:var(--font-heading); font-weight:500; font-size:19px; letter-spacing:-0.012em">Principal Software Engineer</strong>
+            <span style="display:block; margin-top:6px; font-size:13px; letter-spacing:0.04em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 52%, transparent)">An organisation&rsquo;s CI &middot; service-oriented</span>
+            <span style="display:block; margin-top:10px; font-size:15px; line-height:1.65; color:color-mix(in srgb, var(--color-text) 72%, transparent)">The same job at organisation scale, re-architected to get there: service-oriented and microservice architecture, so what used to be one product&rsquo;s pipelines is now platforms, tools, and frameworks that many teams across Microsoft build and ship on &mdash; Azure Stack HCI, Azure Stack Hub, Hybrid AKS, and others. Principal is the senior individual-contributor level, so the work is technical vision and leverage rather than headcount.</span>
+          </span>
+        </li>
+      </ol>
+    </div>
+
+    <div data-reveal="" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:1px; background:var(--color-divider); border-radius:var(--radius-md); overflow:hidden; margin-top:clamp(24px,4vh,40px)">
       <div style="background:var(--color-surface); padding:26px 24px; display:flex; flex-direction:column; gap:10px">
         <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent); font-feature-settings:'tnum' 1">2015</span>
         <span style="font-family:var(--font-heading); font-weight:500; font-size:20px; letter-spacing:-0.012em">Ph.D., Computer Science</span>
-        <span style="font-size:15px; color:color-mix(in srgb, var(--color-text) 70%, transparent)">The University of Alabama. Dissertation on Thunder, an IaaS cloud architecture designed for smaller organizations.</span>
+        <span style="font-size:15px; color:color-mix(in srgb, var(--color-text) 70%, transparent)">The University of Alabama. Dissertation on Thunder, an IaaS cloud architecture designed for smaller organizations. Four years teaching alongside it &mdash; introductory CS in Python and C as a graduate teaching assistant, and as an adjunct professor at Shelton State &mdash; which is where the argument for usability below stopped being abstract.</span>
       </div>
     </div>
 
@@ -807,10 +865,10 @@
     <div style="max-width:1200px; margin:0 auto; padding:clamp(56px,9vh,110px) var(--edge,clamp(20px,5vw,72px)); display:flex; flex-direction:column; gap:24px; align-items:flex-start">
       <span style="font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 70%, transparent)">Contact</span>
       <h2 data-reveal="" style="margin:0; font-family:var(--font-heading); font-weight:500; font-size:clamp(30px,4.2vw,54px); line-height:1.1; letter-spacing:-0.02em; margin-left:-0.04em">Say hello.</h2>
-      <p data-reveal="" style="margin:0; font-size:16px; line-height:1.7; max-width:48ch; color:color-mix(in srgb, var(--color-text) 82%, transparent)">Issues, pull requests and opinions about backpressure are all welcome. Find my technical work on GitHub and professional background on LinkedIn.</p>
+      <p data-reveal="" style="margin:0; font-size:16px; line-height:1.7; max-width:48ch; color:color-mix(in srgb, var(--color-text) 82%, transparent)">Eleven years of hybrid-cloud infrastructure at Microsoft, and a distributed systems habit that does not switch off at five. Full history on LinkedIn, code on GitHub. Issues, pull requests and opinions about backpressure are all welcome.</p>
       <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:4px">
         <a class="btn btn-primary" href="https://github.com/gabloe" target="_blank" rel="noopener">github.com/gabloe</a>
-        <a class="btn btn-ghost" href="https://www.linkedin.com/in/gabloe/" target="_blank" rel="me noopener">LinkedIn</a>
+        <a class="btn btn-primary" href="https://www.linkedin.com/in/gabloe/" target="_blank" rel="me noopener">LinkedIn</a>
       </div>
       <p style="margin:4px 0 0; font-size:14px; color:color-mix(in srgb, var(--color-text) 62%, transparent)">Résumé available on request.</p>
     </div>
