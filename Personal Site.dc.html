@@ -3,6 +3,36 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gabriel Loewen — Principal Software Engineer</title>
+<meta name="description" content="Gabriel Loewen is a principal software engineer and distributed systems architect building cloud infrastructure in Rust and Python.">
+<meta name="theme-color" content="#161826">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="https://gabloe.github.io/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gabloe.github.io/">
+<meta property="og:title" content="Gabriel Loewen — Principal Software Engineer">
+<meta property="og:description" content="Cloud and distributed systems architecture, built in Rust and Python.">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Gabriel Loewen",
+  "url": "https://gabloe.github.io/",
+  "sameAs": ["https://github.com/gabloe"],
+  "jobTitle": "Principal Software Engineer",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Microsoft"
+  },
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "The University of Alabama"
+  },
+  "knowsAbout": ["Distributed systems", "Cloud architecture", "Rust", "Python", "QUIC"]
+}
+</script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -18,16 +48,47 @@
   a { color: var(--color-accent); text-decoration: none; }
   a:hover { color: var(--color-accent-300); }
   ::selection { background: var(--color-accent-800); }
+  html { scroll-behavior: smooth; }
+  section[id] { scroll-margin-top: 88px; }
+  .skip-link {
+    position: fixed; top: 10px; left: 10px; z-index: 100;
+    padding: 9px 12px; border-radius: var(--radius-md);
+    background: var(--color-text); color: var(--color-bg);
+    transform: translateY(-160%); transition: transform .2s ease;
+  }
+  .skip-link:focus { color: var(--color-bg); transform: translateY(0); }
   @keyframes noct-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
   @keyframes noct-breathe { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+  @media (max-width: 640px) {
+    .site-nav {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px 14px;
+      padding: 12px 18px;
+    }
+    .site-nav .nav-brand { grid-column: 1 / 4; grid-row: 1; }
+    .site-nav > a { font-size: 12px; text-align: center; }
+    .site-nav > a[data-spy] { grid-row: 2; }
+    .site-nav > a[data-spy="contact"] { display: none; }
+    .site-nav > .btn { grid-column: 4; grid-row: 1; justify-self: end; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
+    }
+  }
 </style>
 </helmet>
 
 <div style="position:relative; min-height:100%; background:radial-gradient(1200px 720px at 82% -180px, color-mix(in srgb, var(--color-accent-900) 78%, transparent), transparent 60%), radial-gradient(1100px 800px at -10% 100%, color-mix(in srgb, black 32%, transparent), transparent 55%), var(--color-bg); font-family:var(--font-body); overflow-x:hidden">
 
   <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><rect width="120" height="120" fill="#161826"></rect><circle cx="60" cy="60" r="3" fill="#9184d9"></circle><circle cx="36" cy="42" r="2" fill="#9184d9"></circle><circle cx="84" cy="45" r="2" fill="#9184d9"></circle><circle cx="42" cy="80" r="2" fill="#9184d9"></circle><circle cx="80" cy="78" r="2" fill="#9184d9"></circle><g stroke="#9184d9" stroke-width="1" opacity=".5"><path d="M60 60 36 42M60 60 84 45M60 60 42 80M60 60 80 78"></path></g><text x="60" y="106" fill="#e9e9ed" font-family="Inter, sans-serif" font-size="14" font-weight="500" text-anchor="middle">GL</text></svg></template>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <div ref="{{ progressRef }}" aria-hidden="true" style="position:fixed; top:0; left:0; z-index:30; height:2px; width:0%; background:var(--color-accent); box-shadow:0 0 14px color-mix(in srgb, var(--color-accent) 70%, transparent)"></div>
-  <nav class="nav" style="position:sticky; top:0; z-index:20; backdrop-filter:blur(14px); background:color-mix(in srgb, var(--color-bg) 82%, transparent)">
+  <nav class="nav site-nav" aria-label="Primary navigation" style="position:sticky; top:0; z-index:20; backdrop-filter:blur(14px); background:color-mix(in srgb, var(--color-bg) 82%, transparent)">
     <span class="nav-brand" style="letter-spacing:-0.01em">Gabriel Loewen</span>
     <a href="#about" data-spy="about" style="transition:color .25s ease, transform .25s ease" style-hover="color:var(--color-accent); transform:translateY(-2px)">About</a>
     <a href="#felix" data-spy="felix" style="transition:color .25s ease, transform .25s ease" style-hover="color:var(--color-accent); transform:translateY(-2px)">Felix</a>
@@ -37,6 +98,7 @@
     <a class="btn btn-primary" href="https://github.com/gabloe" target="_blank" rel="noopener">GitHub</a>
   </nav>
 
+  <main id="main-content">
   <section style="position:relative; padding:clamp(64px,11vh,140px) var(--edge,clamp(20px,5vw,72px)) clamp(72px,12vh,150px); max-width:1200px; margin:0 auto">
     <canvas ref="{{ skyRef }}" aria-hidden="true" style="position:absolute; inset:-40px 0 0 0; width:100%; height:calc(100% + 40px); pointer-events:none; opacity:.9"></canvas>
     <div style="position:relative; display:flex; flex-direction:column; gap:28px; align-items:flex-start">
@@ -59,7 +121,7 @@
         <a class="btn btn-primary" href="#about">About me</a>
         <a class="btn btn-ghost" href="https://github.com/gabloe" target="_blank" rel="noopener">GitHub</a>
       </div>
-      <p style="margin:0; font-size:13px; color:color-mix(in srgb, var(--color-text) 45%, transparent)">Drag your cursor through the field — the nodes will subscribe. Click anywhere to publish, or press P.</p>
+      <p style="margin:0; font-size:13px; color:color-mix(in srgb, var(--color-text) 45%, transparent)">Interact with the field: move your pointer to connect nodes; tap, click, or press P to publish.</p>
     </div>
   </section>
 
@@ -179,7 +241,7 @@
     <div style="display:flex; flex-direction:column; margin-top:28px">
 
       <div data-project="" data-reveal="" style="position:relative">
-        <button type="button" onClick="{{ toggleDetail }}" style="width:100%; background:transparent; border:0; border-top:1px solid var(--color-neutral-800); cursor:pointer; text-align:left; color:var(--color-text); font-family:var(--font-body); padding:26px 0; display:grid; grid-template-columns:56px minmax(0,1fr) auto; gap:clamp(16px,3vw,48px); align-items:baseline; transition:opacity .2s ease" style-hover="opacity:.72">
+        <button id="decision-1-button" type="button" aria-expanded="false" aria-controls="decision-1-detail" onClick="{{ toggleDetail }}" style="width:100%; background:transparent; border:0; border-top:1px solid var(--color-neutral-800); cursor:pointer; text-align:left; color:var(--color-text); font-family:var(--font-body); padding:26px 0; display:grid; grid-template-columns:56px minmax(0,1fr) auto; gap:clamp(16px,3vw,48px); align-items:baseline; transition:opacity .2s ease" style-hover="opacity:.72">
           <span style="font-family:var(--font-heading); font-weight:500; font-size:14px; color:var(--color-accent); font-feature-settings:'tnum' 1">01</span>
           <span style="display:flex; flex-direction:column; gap:8px">
             <span style="font-family:var(--font-heading); font-weight:500; font-size:clamp(20px,2.4vw,26px); letter-spacing:-0.012em">Fanout that encodes once</span>
@@ -187,13 +249,13 @@
           </span>
           <span data-chev="" style="font-size:22px; line-height:1; color:var(--color-accent); transition:transform .3s ease; display:inline-block">+</span>
         </button>
-        <div data-detail="" style="overflow:hidden; max-height:0; opacity:0; transition:max-height .45s ease, opacity .3s ease">
+        <div id="decision-1-detail" data-detail="" role="region" aria-labelledby="decision-1-button" hidden style="overflow:hidden; max-height:0; opacity:0; transition:max-height .45s ease, opacity .3s ease">
           <p style="margin:0 0 26px; padding-left:clamp(0px,4vw,104px); font-size:15px; line-height:1.7; max-width:56ch; color:color-mix(in srgb, var(--color-text) 78%, transparent)">The broker enqueues publish jobs and fans out over a shared-frame path with dense stream handles on the hot path, so per-subscriber cost stays close to a write. Each subscription gets its own unidirectional delivery stream, and byte-budgeted admission control at both client and broker ingest keeps a slow consumer from backing up into everyone else.</p>
         </div>
       </div>
 
       <div data-project="" data-reveal="" style="position:relative">
-        <button type="button" onClick="{{ toggleDetail }}" style="width:100%; background:transparent; border:0; border-top:1px solid var(--color-neutral-800); cursor:pointer; text-align:left; color:var(--color-text); font-family:var(--font-body); padding:26px 0; display:grid; grid-template-columns:56px minmax(0,1fr) auto; gap:clamp(16px,3vw,48px); align-items:baseline; transition:opacity .2s ease" style-hover="opacity:.72">
+        <button id="decision-2-button" type="button" aria-expanded="false" aria-controls="decision-2-detail" onClick="{{ toggleDetail }}" style="width:100%; background:transparent; border:0; border-top:1px solid var(--color-neutral-800); cursor:pointer; text-align:left; color:var(--color-text); font-family:var(--font-body); padding:26px 0; display:grid; grid-template-columns:56px minmax(0,1fr) auto; gap:clamp(16px,3vw,48px); align-items:baseline; transition:opacity .2s ease" style-hover="opacity:.72">
           <span style="font-family:var(--font-heading); font-weight:500; font-size:14px; color:var(--color-accent); font-feature-settings:'tnum' 1">02</span>
           <span style="display:flex; flex-direction:column; gap:8px">
             <span style="font-family:var(--font-heading); font-weight:500; font-size:clamp(20px,2.4vw,26px); letter-spacing:-0.012em">Cache without stream setup costs</span>
@@ -201,13 +263,13 @@
           </span>
           <span data-chev="" style="font-size:22px; line-height:1; color:var(--color-accent); transition:transform .3s ease; display:inline-block">+</span>
         </button>
-        <div data-detail="" style="overflow:hidden; max-height:0; opacity:0; transition:max-height .45s ease, opacity .3s ease">
+        <div id="decision-2-detail" data-detail="" role="region" aria-labelledby="decision-2-button" hidden style="overflow:hidden; max-height:0; opacity:0; transition:max-height .45s ease, opacity .3s ease">
           <p style="margin:0 0 26px; padding-left:clamp(0px,4vw,104px); font-size:15px; line-height:1.7; max-width:56ch; color:color-mix(in srgb, var(--color-text) 78%, transparent)">Clients hold a connection pool of long-lived stream workers; cache requests carry a request ID and multiplex over them, and the broker answers on the same stream from a single read loop. Put and get with TTL, log-backed and durable when the broker has a storage directory — the same protocol that carries events, so there is one envelope to reason about.</p>
         </div>
       </div>
 
       <div data-project="" data-reveal="" style="position:relative; border-bottom:1px solid var(--color-neutral-800)">
-        <button type="button" onClick="{{ toggleDetail }}" style="width:100%; background:transparent; border:0; border-top:1px solid var(--color-neutral-800); cursor:pointer; text-align:left; color:var(--color-text); font-family:var(--font-body); padding:26px 0; display:grid; grid-template-columns:56px minmax(0,1fr) auto; gap:clamp(16px,3vw,48px); align-items:baseline; transition:opacity .2s ease" style-hover="opacity:.72">
+        <button id="decision-3-button" type="button" aria-expanded="false" aria-controls="decision-3-detail" onClick="{{ toggleDetail }}" style="width:100%; background:transparent; border:0; border-top:1px solid var(--color-neutral-800); cursor:pointer; text-align:left; color:var(--color-text); font-family:var(--font-body); padding:26px 0; display:grid; grid-template-columns:56px minmax(0,1fr) auto; gap:clamp(16px,3vw,48px); align-items:baseline; transition:opacity .2s ease" style-hover="opacity:.72">
           <span style="font-family:var(--font-heading); font-weight:500; font-size:14px; color:var(--color-accent); font-feature-settings:'tnum' 1">03</span>
           <span style="display:flex; flex-direction:column; gap:8px">
             <span style="font-family:var(--font-heading); font-weight:500; font-size:clamp(20px,2.4vw,26px); letter-spacing:-0.012em">A conformance suite that keeps clients honest</span>
@@ -215,7 +277,7 @@
           </span>
           <span data-chev="" style="font-size:22px; line-height:1; color:var(--color-accent); transition:transform .3s ease; display:inline-block">+</span>
         </button>
-        <div data-detail="" style="overflow:hidden; max-height:0; opacity:0; transition:max-height .45s ease, opacity .3s ease">
+        <div id="decision-3-detail" data-detail="" role="region" aria-labelledby="decision-3-button" hidden style="overflow:hidden; max-height:0; opacity:0; transition:max-height .45s ease, opacity .3s ease">
           <p style="margin:0 0 26px; padding-left:clamp(0px,4vw,104px); font-size:15px; line-height:1.7; max-width:56ch; color:color-mix(in srgb, var(--color-text) 78%, transparent)">A standalone runner validates that framing and binary encoding match the shared test vectors. Anything that passes can interoperate without relying on Rust-specific behavior — which is also why the wire protocol, client SDK and transport are Apache-2.0 while the server components are source-available under ELv2.</p>
         </div>
       </div>
@@ -234,6 +296,7 @@
       <p style="margin:4px 0 0; font-size:14px; color:color-mix(in srgb, var(--color-text) 62%, transparent)">Résumé available on request.</p>
     </div>
   </section>
+  </main>
 
   <footer style="max-width:1200px; margin:0 auto; padding:36px var(--edge,clamp(20px,5vw,72px)); font-size:13px; color:color-mix(in srgb, var(--color-text) 50%, transparent); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap">
     <span>© 2026 Gabriel Loewen</span>
@@ -252,11 +315,23 @@ class Component extends DCLogic {
     this.toggleDetail = (e) => {
       const wrap = e.currentTarget.closest('[data-project]');
       if (!wrap) return;
+      const button = e.currentTarget;
       const detail = wrap.querySelector('[data-detail]');
       const chev = wrap.querySelector('[data-chev]');
-      const open = detail.style.maxHeight && detail.style.maxHeight !== '0px';
-      detail.style.maxHeight = open ? '0px' : detail.scrollHeight + 'px';
-      detail.style.opacity = open ? '0' : '1';
+      const open = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', String(!open));
+      if (detail._hideTimer) clearTimeout(detail._hideTimer);
+      if (open) {
+        detail.style.maxHeight = '0px';
+        detail.style.opacity = '0';
+        detail._hideTimer = setTimeout(() => { detail.hidden = true; }, 450);
+      } else {
+        detail.hidden = false;
+        requestAnimationFrame(() => {
+          detail.style.maxHeight = detail.scrollHeight + 'px';
+          detail.style.opacity = '1';
+        });
+      }
       if (chev) chev.style.transform = open ? 'rotate(0deg)' : 'rotate(45deg)';
     };
   }
@@ -272,11 +347,15 @@ class Component extends DCLogic {
   componentWillUnmount() {
     this._alive = false;
     if (this._io) this._io.disconnect();
+    if (this._skyObserver) this._skyObserver.disconnect();
+    if (this._skyRaf) cancelAnimationFrame(this._skyRaf);
+    if (this._revealTimer) clearTimeout(this._revealTimer);
     if (this._onScroll) removeEventListener('scroll', this._onScroll);
     if (this._onMove) removeEventListener('pointermove', this._onMove);
     if (this._onResize) removeEventListener('resize', this._onResize);
     if (this._pulseHost && this._onClick) this._pulseHost.removeEventListener('pointerdown', this._onClick);
     if (this._onKey) removeEventListener('keydown', this._onKey);
+    if (this._spotlightCleanups) this._spotlightCleanups.forEach((cleanup) => cleanup());
   }
 
   _reveal() {
@@ -293,12 +372,13 @@ class Component extends DCLogic {
       entries.forEach((en) => { if (en.isIntersecting) { show(en.target); this._io.unobserve(en.target); } });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
     els.forEach((el) => this._io.observe(el));
-    setTimeout(() => els.forEach(show), 2500);
+    this._revealTimer = setTimeout(() => els.forEach(show), 2500);
   }
 
   _spy() {
     const links = Array.from(document.querySelectorAll('[data-spy]'));
     if (!links.length) return;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     let raf = 0;
     this._onScroll = () => {
       if (raf) return;
@@ -309,7 +389,7 @@ class Component extends DCLogic {
         const y = doc.scrollTop || document.body.scrollTop || 0;
         if (this.progressRef.current) this.progressRef.current.style.width = Math.min(100, (y / max) * 100).toFixed(2) + '%';
         const h1 = document.querySelector('h1[aria-label]');
-        if (h1 && y < innerHeight) {
+        if (!reduce && h1 && y < innerHeight) {
           h1.style.transform = 'translateY(' + (y * 0.08).toFixed(1) + 'px)';
           h1.style.letterSpacing = (-0.025 + Math.min(0.02, y / innerHeight * 0.02)).toFixed(4) + 'em';
         }
@@ -320,8 +400,8 @@ class Component extends DCLogic {
         });
         links.forEach((a) => {
           const on = a === active;
-          a.style.color = on ? 'var(--color-accent)' : '';
-          a.style.opacity = on ? '1' : '';
+          if (on) a.setAttribute('aria-current', 'location');
+          else a.removeAttribute('aria-current');
         });
       });
     };
@@ -453,23 +533,50 @@ class Component extends DCLogic {
           }
         }
       }
-      requestAnimationFrame(frame);
+      if (!reduce && this._skyRunning) this._skyRaf = requestAnimationFrame(frame);
     };
-    requestAnimationFrame(frame);
+    if (reduce) {
+      frame(0);
+      return;
+    }
+    const start = () => {
+      if (!this._alive || this._skyRunning) return;
+      this._skyRunning = true;
+      this._skyRaf = requestAnimationFrame(frame);
+    };
+    const stop = () => {
+      this._skyRunning = false;
+      if (this._skyRaf) cancelAnimationFrame(this._skyRaf);
+      this._skyRaf = 0;
+    };
+    this._skyObserver = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) start();
+      else stop();
+    }, { rootMargin: '120px 0px' });
+    this._skyObserver.observe(cv);
   }
 
   _spotlight() {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    this._spotlightCleanups = [];
     document.querySelectorAll('[data-project]').forEach((row) => {
       const on = (e) => {
         const r = row.getBoundingClientRect();
         row.style.background = 'radial-gradient(420px 120px at ' + (e.clientX - r.left) + 'px ' + (e.clientY - r.top) + 'px, color-mix(in srgb, var(--color-accent-900) 70%, transparent), transparent 70%)';
       };
-      row.style.transition = 'transform .4s cubic-bezier(.22,.61,.36,1)';
-      row.addEventListener('pointermove', on);
-      row.addEventListener('pointerenter', () => { row.style.transform = 'translateX(8px)'; });
-      row.addEventListener('pointerleave', () => {
+      const enter = () => { row.style.transform = 'translateX(8px)'; };
+      const leave = () => {
         row.style.background = 'transparent';
         row.style.transform = 'none';
+      };
+      row.style.transition = 'transform .4s cubic-bezier(.22,.61,.36,1)';
+      row.addEventListener('pointermove', on);
+      row.addEventListener('pointerenter', enter);
+      row.addEventListener('pointerleave', leave);
+      this._spotlightCleanups.push(() => {
+        row.removeEventListener('pointermove', on);
+        row.removeEventListener('pointerenter', enter);
+        row.removeEventListener('pointerleave', leave);
       });
     });
   }
