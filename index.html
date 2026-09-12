@@ -589,9 +589,29 @@
         <p style="margin:0; font-size:17px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 84%, transparent)">A QUIC-based distributed event and cache system in Rust: low-latency pub/sub, durable streams, multiplexed caching, and multi-broker clustering.</p>
         <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 72%, transparent)">Streams are sharded across broker owners selected with rendezvous hashing. A publish can enter through any broker and be forwarded to the owner; subscriptions follow bounded owner redirects and resume from their last offset. Durable streams use append-only log shipping, lease-fenced leaders, Leader or Quorum consistency, and caught-up replica promotion so quorum-acknowledged records survive leader failover.</p>
         <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 72%, transparent)">The cluster suite exercises cross-broker routing, broker loss, process suspension, fencing, failover, redirects, reconnect, and single-node/cluster conformance. The system still prioritizes high fanout, predictable tail latency, and strict slow-consumer isolation; it remains in early active development while the control plane and operational model continue to evolve.</p>
+        <div aria-label="Selected Felix benchmark results" style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; overflow:hidden; border:1px solid var(--color-divider); border-radius:var(--radius-md); background:var(--color-divider)">
+          <div style="display:flex; flex-direction:column; gap:5px; padding:16px; background:color-mix(in srgb, var(--color-surface) 92%, transparent)">
+            <strong style="font-family:var(--font-heading); font-size:clamp(22px,3vw,30px); font-weight:500; color:var(--color-accent); font-feature-settings:'tnum' 1">483 µs</strong>
+            <span style="font-size:12px; line-height:1.45; color:color-mix(in srgb, var(--color-text) 62%, transparent)">p999 · 4 KiB · fanout 10</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:5px; padding:16px; background:color-mix(in srgb, var(--color-surface) 92%, transparent)">
+            <strong style="font-family:var(--font-heading); font-size:clamp(22px,3vw,30px); font-weight:500; color:var(--color-accent); font-feature-settings:'tnum' 1">1.4M msg/s</strong>
+            <span style="font-size:12px; line-height:1.45; color:color-mix(in srgb, var(--color-text) 62%, transparent)">256 B · lossless delivery</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:5px; padding:16px; background:color-mix(in srgb, var(--color-surface) 92%, transparent)">
+            <strong style="font-family:var(--font-heading); font-size:clamp(22px,3vw,30px); font-weight:500; color:var(--color-accent); font-feature-settings:'tnum' 1">508 MB/s</strong>
+            <span style="font-size:12px; line-height:1.45; color:color-mix(in srgb, var(--color-text) 62%, transparent)">4 KiB · sustained payload</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:5px; padding:16px; background:color-mix(in srgb, var(--color-surface) 92%, transparent)">
+            <strong style="font-family:var(--font-heading); font-size:clamp(22px,3vw,30px); font-weight:500; color:var(--color-accent); font-feature-settings:'tnum' 1">~7×</strong>
+            <span style="font-size:12px; line-height:1.45; color:color-mix(in srgb, var(--color-text) 62%, transparent)">throughput after transport tuning</span>
+          </div>
+        </div>
+        <p style="margin:-6px 0 0; font-size:12px; line-height:1.55; color:color-mix(in srgb, var(--color-text) 52%, transparent)">Apple M4 Max, macOS loopback, release build, QUIC with TLS 1.3. Latency uses per-message acknowledgements; throughput is sustained beyond the QUIC send window with bounded, lossless backpressure and zero dropped deliveries. Results are medians from repeated trials.</p>
         <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:4px">
           <a class="btn btn-primary" href="https://github.com/gabloe/felix" target="_blank" rel="noopener">Source on GitHub</a>
           <a class="btn btn-ghost" href="https://gabloe.github.io/felix" target="_blank" rel="noopener">Documentation</a>
+          <a class="btn btn-ghost" href="https://gabloe.github.io/felix/features/benchmarks/" target="_blank" rel="noopener">Benchmarks</a>
         </div>
       </div>
       <div class="project-aside">
