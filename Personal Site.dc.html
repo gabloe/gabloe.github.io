@@ -11,16 +11,26 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://gabloe.github.io/">
+<meta property="og:site_name" content="Gabriel Loewen">
 <meta property="og:title" content="Gabriel Loewen — Principal Software Engineer">
 <meta property="og:description" content="Cloud and distributed systems architecture, built in Rust and Python.">
+<meta property="og:image" content="https://gabloe.github.io/assets/gabriel-loewen-headshot.jpg">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="800">
+<meta property="og:image:alt" content="Portrait of Gabriel Loewen">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gabloe.github.io/assets/gabriel-loewen-headshot.jpg">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Gabriel Loewen",
   "url": "https://gabloe.github.io/",
-  "sameAs": ["https://github.com/gabloe"],
+  "image": "https://gabloe.github.io/assets/gabriel-loewen-headshot.webp",
+  "sameAs": [
+    "https://github.com/gabloe",
+    "https://www.linkedin.com/in/gabloe/"
+  ],
   "jobTitle": "Principal Software Engineer",
   "worksFor": {
     "@type": "Organization",
@@ -56,6 +66,343 @@
     transform: translateY(-160%); transition: transform .2s ease;
   }
   .skip-link:focus { color: var(--color-bg); transform: translateY(0); }
+  .portrait-card {
+    position: relative;
+    width: min(100%, 230px);
+    margin: 18px 12px 0 0;
+    isolation: isolate;
+  }
+  .portrait-card::before {
+    content: "";
+    position: absolute;
+    inset: 12px -12px -12px 12px;
+    z-index: -1;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 72%, transparent);
+    border-radius: calc(var(--radius-lg) + 4px);
+    transform: rotate(2deg);
+    transition: transform .45s cubic-bezier(.22,.61,.36,1);
+  }
+  .portrait-card::after {
+    content: "";
+    position: absolute;
+    top: -18px;
+    right: -20px;
+    width: 76px;
+    height: 76px;
+    background:
+      radial-gradient(circle at 18% 30%, var(--color-accent) 0 2px, transparent 2.5px),
+      radial-gradient(circle at 72% 18%, var(--color-accent) 0 1.5px, transparent 2px),
+      radial-gradient(circle at 84% 72%, var(--color-accent) 0 2px, transparent 2.5px),
+      linear-gradient(32deg, transparent 48%, color-mix(in srgb, var(--color-accent) 38%, transparent) 49% 50%, transparent 51%);
+    opacity: .8;
+    pointer-events: none;
+  }
+  .portrait-card:hover::before { transform: rotate(-1deg) translate(2px, -2px); }
+  .portrait-card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    object-position: center 38%;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 18px 54px rgba(0,0,0,.42);
+    filter: saturate(.88) contrast(1.03);
+  }
+  .portrait-card figcaption {
+    margin-top: 15px;
+    color: color-mix(in srgb, var(--color-text) 58%, transparent);
+    font-size: 12px;
+    letter-spacing: .045em;
+    text-transform: uppercase;
+  }
+  .research-card { position: relative; overflow: hidden; }
+  .research-weather {
+    position: relative;
+    width: 150px;
+    height: 98px;
+    margin: 10px 0 -4px;
+    opacity: .52;
+    pointer-events: none;
+  }
+  .research-cloud {
+    position: absolute;
+    top: 23px;
+    left: 24px;
+    width: 102px;
+    height: 30px;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 62%, transparent);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-accent-900) 88%, var(--color-surface));
+    box-shadow: 0 8px 22px rgba(0,0,0,.22);
+    animation: research-cloud-drift 5.5s ease-in-out infinite;
+  }
+  .research-cloud::before,
+  .research-cloud::after {
+    content: "";
+    position: absolute;
+    bottom: 8px;
+    border: inherit;
+    border-radius: 50%;
+    background: inherit;
+  }
+  .research-cloud::before { left: 18px; width: 42px; height: 42px; }
+  .research-cloud::after { right: 17px; width: 33px; height: 33px; }
+  .research-rain {
+    position: absolute;
+    top: 61px;
+    left: calc(37px + var(--rain-x));
+    width: 1px;
+    height: 18px;
+    background: linear-gradient(to bottom, transparent, var(--color-accent));
+    transform: rotate(12deg);
+    animation: research-rain 1.2s linear infinite;
+    animation-delay: var(--rain-delay);
+  }
+  .research-bolt {
+    position: absolute;
+    top: 56px;
+    left: 71px;
+    width: 18px;
+    height: 29px;
+    background: var(--color-accent-300);
+    clip-path: polygon(50% 0, 100% 0, 65% 42%, 93% 42%, 25% 100%, 43% 55%, 12% 55%);
+    filter: drop-shadow(0 0 7px var(--color-accent));
+    animation: research-flash 5.5s steps(1,end) infinite;
+  }
+  @keyframes research-cloud-drift {
+    0%, 100% { transform: translateX(-3px); }
+    50% { transform: translateX(4px); }
+  }
+  @keyframes research-rain {
+    0% { opacity: 0; transform: translateY(-5px) rotate(12deg); }
+    25% { opacity: .8; }
+    100% { opacity: 0; transform: translateY(18px) rotate(12deg); }
+  }
+  @keyframes research-flash {
+    0%, 84%, 88%, 92%, 100% { opacity: 0; }
+    85%, 89% { opacity: 1; }
+    86%, 90% { opacity: .25; }
+  }
+  .project-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(250px, .55fr);
+    gap: clamp(32px, 6vw, 84px);
+    align-items: start;
+  }
+  .project-aside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .project-visual {
+    position: relative;
+    width: min(100%, 270px);
+    height: 154px;
+    flex: none;
+    overflow: hidden;
+    border: 1px solid var(--color-divider);
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--color-surface) 82%, transparent);
+  }
+  .project-visual-stage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 156px;
+    height: 88px;
+    transform: translate(-50%, -50%) scale(1.45);
+  }
+  .project-specs {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  [data-ambient]:not(.is-visible) * { animation-play-state: paused !important; }
+  .felix-diagram { width: 100%; height: 100%; }
+  .felix-ground {
+    fill: none;
+    stroke: color-mix(in srgb, var(--color-accent) 34%, transparent);
+    stroke-width: 1;
+    stroke-dasharray: 3 6;
+  }
+  .felix-node { fill: color-mix(in srgb, var(--color-accent) 62%, transparent); }
+  .felix-cat {
+    transform: translate(78px, 47px);
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: felix-cat-walk 6.8s ease-in-out infinite;
+  }
+  .felix-cat-body,
+  .felix-cat-head,
+  .felix-cat-ear {
+    fill: var(--color-accent-800);
+    stroke: var(--color-accent-300);
+    stroke-width: 1;
+  }
+  .felix-cat-eye { fill: var(--color-accent-100); }
+  .felix-tail,
+  .felix-leg {
+    fill: none;
+    stroke: var(--color-accent-300);
+    stroke-width: 3;
+    stroke-linecap: round;
+  }
+  .felix-tail {
+    transform-box: fill-box;
+    transform-origin: left bottom;
+    animation: felix-tail-swish .7s ease-in-out infinite alternate;
+  }
+  .felix-leg {
+    transform-box: fill-box;
+    transform-origin: top;
+    animation: felix-step .42s ease-in-out infinite alternate;
+  }
+  .felix-leg-b { animation-delay: -.42s; }
+  @keyframes felix-cat-walk {
+    0% { transform: translate(36px,47px) scaleX(-1); }
+    47% { transform: translate(119px,46px) scaleX(-1); }
+    50% { transform: translate(119px,47px) scaleX(1); }
+    97% { transform: translate(36px,46px) scaleX(1); }
+    100% { transform: translate(36px,47px) scaleX(-1); }
+  }
+  @keyframes felix-tail-swish {
+    from { transform: rotate(-7deg); }
+    to { transform: rotate(10deg); }
+  }
+  @keyframes felix-step {
+    from { transform: rotate(-13deg); }
+    to { transform: rotate(13deg); }
+  }
+  .harbor-scene {
+    background: linear-gradient(to bottom, #202536 0 54%, #171b28 55%);
+  }
+  .harbor-water {
+    position: absolute;
+    inset: 58% 0 0;
+    background: repeating-linear-gradient(to bottom, color-mix(in srgb, var(--color-accent) 16%, transparent) 0 1px, transparent 1px 9px);
+  }
+  .harbor-lighthouse {
+    position: absolute;
+    left: 31px;
+    bottom: 15px;
+    width: 13px;
+    height: 43px;
+    background: linear-gradient(to right, #77798a, #d0d1d9 52%, #626575);
+    clip-path: polygon(22% 0, 78% 0, 100% 100%, 0 100%);
+    z-index: 3;
+  }
+  .harbor-lighthouse::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: -2px;
+    width: 17px;
+    height: 9px;
+    border-radius: 3px 3px 1px 1px;
+    background: var(--color-accent-300);
+    box-shadow: 0 0 10px var(--color-accent);
+  }
+  .harbor-beam {
+    position: absolute;
+    left: 39px;
+    bottom: 55px;
+    width: 104px;
+    height: 42px;
+    transform-origin: 0 50%;
+    clip-path: polygon(0 43%, 100% 0, 100% 100%, 0 57%);
+    background: linear-gradient(to right, color-mix(in srgb, var(--color-accent-200) 48%, transparent), transparent);
+    animation: harbor-sweep 6s ease-in-out infinite;
+    z-index: 1;
+  }
+  .harbor-fog {
+    position: absolute;
+    left: -40px;
+    width: 230px;
+    height: 16px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-neutral-300) 16%, transparent);
+    filter: blur(6px);
+    animation: harbor-fog 7s ease-in-out infinite alternate;
+    z-index: 4;
+  }
+  .harbor-fog-a { top: 22px; }
+  .harbor-fog-b { top: 48px; animation-delay: -3s; animation-duration: 9s; }
+  .harbor-fog-c { top: 69px; animation-delay: -5s; animation-duration: 8s; }
+  @keyframes harbor-sweep {
+    0%, 100% { transform: rotate(-9deg); opacity: .3; }
+    50% { transform: rotate(9deg); opacity: .78; }
+  }
+  @keyframes harbor-fog {
+    from { transform: translateX(-18px); opacity: .42; }
+    to { transform: translateX(24px); opacity: .75; }
+  }
+  .jenkins-terminal {
+    position: absolute;
+    left: 13px;
+    top: 24px;
+    width: 46px;
+    height: 37px;
+    padding: 9px 7px;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 55%, transparent);
+    border-radius: 5px;
+    color: var(--color-accent-300);
+    font: 600 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+    background: #151722;
+  }
+  .jenkins-cursor {
+    display: inline-block;
+    width: 6px;
+    height: 10px;
+    margin-left: 2px;
+    vertical-align: -1px;
+    background: var(--color-accent);
+    animation: jenkins-cursor .9s steps(1,end) infinite;
+  }
+  .jenkins-pipeline {
+    position: absolute;
+    left: 58px;
+    right: 24px;
+    top: 43px;
+    height: 1px;
+    background: color-mix(in srgb, var(--color-accent) 48%, transparent);
+  }
+  .jenkins-task {
+    position: absolute;
+    left: 59px;
+    top: 38px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    box-shadow: 0 0 10px var(--color-accent);
+    animation: jenkins-task 2.7s cubic-bezier(.42,0,.25,1) infinite;
+  }
+  .jenkins-check {
+    position: absolute;
+    right: 11px;
+    top: 28px;
+    display: grid;
+    place-items: center;
+    width: 31px;
+    height: 31px;
+    border: 1px solid var(--color-accent);
+    border-radius: 50%;
+    color: var(--color-accent-200);
+    font: 600 16px/1 system-ui, sans-serif;
+    background: var(--color-accent-900);
+    animation: jenkins-check 2.7s ease-out infinite;
+  }
+  @keyframes jenkins-cursor { 50% { opacity: 0; } }
+  @keyframes jenkins-task {
+    0%, 15% { transform: translateX(0); opacity: 0; }
+    25% { opacity: 1; }
+    72% { transform: translateX(62px); opacity: 1; }
+    80%, 100% { transform: translateX(62px); opacity: 0; }
+  }
+  @keyframes jenkins-check {
+    0%, 68%, 100% { transform: scale(.86); opacity: .45; }
+    78%, 88% { transform: scale(1.08); opacity: 1; }
+  }
   @keyframes noct-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
   @keyframes noct-breathe { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
   @media (max-width: 640px) {
@@ -68,8 +415,17 @@
     .site-nav .nav-brand { grid-column: 1 / 4; grid-row: 1; }
     .site-nav > a { font-size: 12px; text-align: center; }
     .site-nav > a[data-spy] { grid-row: 2; }
-    .site-nav > a[data-spy="contact"] { display: none; }
     .site-nav > .btn { grid-column: 4; grid-row: 1; justify-self: end; }
+    .portrait-card { width: min(70vw, 200px); margin-inline: auto; }
+    .project-layout { grid-template-columns: minmax(0, 1fr); }
+    .project-aside { align-items: flex-start; }
+    .project-visual { width: min(100%, 250px); height: 140px; }
+    .project-visual-stage { transform: translate(-50%, -50%) scale(1.3); }
+    .research-weather {
+      width: 150px;
+      height: 82px;
+      margin: 10px 0 6px;
+    }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -78,6 +434,13 @@
       animation-iteration-count: 1 !important;
       transition-duration: .01ms !important;
     }
+    .research-cloud, .research-rain, .research-bolt,
+    .felix-cat, .felix-tail, .felix-leg,
+    .harbor-beam, .harbor-fog,
+    .jenkins-cursor, .jenkins-task, .jenkins-check { animation: none !important; }
+    .research-bolt { opacity: .7; }
+    .jenkins-task { transform: translateX(62px); }
+    .jenkins-check { opacity: 1; transform: none; }
   }
 </style>
 </helmet>
@@ -90,9 +453,8 @@
   <nav class="nav site-nav" aria-label="Primary navigation" style="position:sticky; top:0; z-index:20; backdrop-filter:blur(14px); background:color-mix(in srgb, var(--color-bg) 82%, transparent)">
     <span class="nav-brand" style="letter-spacing:-0.01em">Gabriel Loewen</span>
     <a href="#about" data-spy="about" style="transition:color .25s ease, transform .25s ease" style-hover="color:var(--color-accent); transform:translateY(-2px)">About</a>
-    <a href="#felix" data-spy="felix" style="transition:color .25s ease, transform .25s ease" style-hover="color:var(--color-accent); transform:translateY(-2px)">Felix</a>
-    <a href="#harbor" data-spy="harbor" style="transition:color .25s ease, transform .25s ease" style-hover="color:var(--color-accent); transform:translateY(-2px)">Pale Harbor</a>
-    <a href="#work" data-spy="work" style="transition:color .25s ease, transform .25s ease" style-hover="color:var(--color-accent); transform:translateY(-2px)">How I work</a>
+    <a href="#felix" data-spy="felix" style="transition:color .25s ease, transform .25s ease" style-hover="color:var(--color-accent); transform:translateY(-2px)">Projects</a>
+    <a href="#work" data-spy="work" style="transition:color .25s ease, transform .25s ease" style-hover="color:var(--color-accent); transform:translateY(-2px)">Principles</a>
     <a href="#contact" data-spy="contact" style="transition:color .25s ease, transform .25s ease" style-hover="color:var(--color-accent); transform:translateY(-2px)">Contact</a>
     <a class="btn btn-primary" href="https://github.com/gabloe" target="_blank" rel="noopener">GitHub</a>
   </nav>
@@ -130,9 +492,13 @@
       <div style="display:flex; flex-direction:column; gap:16px">
         <span style="font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent)">About</span>
         <h2 data-reveal="" style="margin:0; font-family:var(--font-heading); font-weight:500; font-size:clamp(28px,3.4vw,42px); line-height:1.12; letter-spacing:-0.018em">Systems that stay honest under load</h2>
+        <figure class="portrait-card" data-reveal="">
+          <img src="/assets/gabriel-loewen-headshot.webp" width="800" height="800" loading="lazy" decoding="async" alt="Gabriel Loewen wearing round black glasses and a black sweater">
+          <figcaption>Principal engineer · Protocol enthusiast · Rain-compatible</figcaption>
+        </figure>
       </div>
       <div data-reveal="" style="display:flex; flex-direction:column; gap:22px; max-width:60ch">
-        <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 82%, transparent)">I've been at Microsoft since 2015, now as a principal software engineer, working on cloud and distributed systems architecture — the parts that have to keep working when a region, a dependency or a deploy decides otherwise. Born and raised in the Pacific Northwest and still here; the rain is good for staying indoors and reading flame graphs.</p>
+        <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 82%, transparent)">I've been at Microsoft since 2015, now as a principal software engineer, working on the platforms and automation that make complex infrastructure repeatable, observable, and operable at scale. Born and raised in the Pacific Northwest and still here; the rain is good for staying indoors and reading flame graphs.</p>
         <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 82%, transparent)">I build primarily in Python and Rust, and the work I like best sits close to the wire: protocols, transports, storage, and the moments where a system has to decide who gets slowed down. Right now that means Felix, where the design discipline is simple — if a guarantee can't be enforced in code, it isn't a guarantee.</p>
         <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:4px">
           <span class="tag tag-outline">Rust</span>
@@ -146,9 +512,25 @@
       </div>
     </div>
 
-    <figure data-reveal="" style="margin:clamp(36px,5vh,56px) 0 0; max-width:62ch">
-      <blockquote style="margin:0; font-family:var(--font-heading); font-weight:500; font-size:19px; line-height:1.55; letter-spacing:-0.008em; text-indent:-0.474em; color:color-mix(in srgb, var(--color-text) 88%, transparent)">“I am the person who helps answer the big questions about distributed systems, service oriented architecture, and microservice design.”</blockquote>
-    </figure>
+    <article data-reveal="" style="margin-top:clamp(36px,5vh,56px); padding:clamp(24px,4vw,36px); border-left:2px solid var(--color-accent); border-radius:0 var(--radius-lg) var(--radius-lg) 0; background:linear-gradient(105deg, color-mix(in srgb, var(--color-accent-900) 42%, var(--color-surface)), var(--color-surface) 58%)">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:clamp(24px,4vw,56px); align-items:start">
+        <div>
+          <span style="font-size:12px; letter-spacing:0.07em; text-transform:uppercase; color:var(--color-accent)">At Microsoft</span>
+          <h3 style="margin:14px 0 0; font-family:var(--font-heading); font-weight:500; font-size:clamp(24px,3vw,34px); line-height:1.15; letter-spacing:-0.018em">Building the systems behind the systems</h3>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:18px">
+          <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 80%, transparent)">I build internal platforms, services, and frameworks that let engineering teams provision, manage, and validate local and cloud infrastructure at scale. The work spans full-stack test environments, physical infrastructure lifecycle automation, and repeatable development workflows designed to be both scalable and cost-conscious.</p>
+          <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 72%, transparent)">These capabilities support teams building hybrid-cloud products including Azure Stack HCI, Azure Stack Hub, and hybrid AKS solutions. My focus is making difficult infrastructure easier to consume: dependable APIs, automation that removes operational work, and platforms that help developers spend more time on their product.</p>
+          <div style="display:flex; gap:8px; flex-wrap:wrap">
+            <span class="tag tag-outline">Infrastructure automation</span>
+            <span class="tag tag-outline">Dev/test platforms</span>
+            <span class="tag tag-outline">Hybrid cloud</span>
+            <span class="tag tag-outline">Hardware lifecycle</span>
+            <span class="tag tag-outline">Developer productivity</span>
+          </div>
+        </div>
+      </div>
+    </article>
 
     <div data-reveal="" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:1px; background:var(--color-divider); border-radius:var(--radius-md); overflow:hidden; margin-top:clamp(40px,6vh,72px)">
       <div style="background:var(--color-surface); padding:26px 24px; display:flex; flex-direction:column; gap:10px">
@@ -159,25 +541,82 @@
       <div style="background:var(--color-surface); padding:26px 24px; display:flex; flex-direction:column; gap:10px">
         <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent); font-feature-settings:'tnum' 1">2015</span>
         <span style="font-family:var(--font-heading); font-weight:500; font-size:20px; letter-spacing:-0.012em">Ph.D., Computer Science</span>
-        <span style="font-size:15px; color:color-mix(in srgb, var(--color-text) 70%, transparent)">The University of Alabama. Dissertation on the IaaS cloud vertical: optimizing local private-cloud deployment strategy for non-profit organizations.</span>
+        <span style="font-size:15px; color:color-mix(in srgb, var(--color-text) 70%, transparent)">The University of Alabama. Dissertation on Thunder, an IaaS cloud architecture designed for smaller organizations.</span>
       </div>
     </div>
+
+    <article class="research-card" data-reveal="" style="margin-top:clamp(32px,5vh,56px); padding:clamp(24px,4vw,40px); border:1px solid var(--color-divider); border-radius:var(--radius-lg); background:radial-gradient(520px 260px at 100% 0%, color-mix(in srgb, var(--color-accent-900) 72%, transparent), transparent 70%), var(--color-surface)">
+      <span style="font-size:12px; letter-spacing:0.07em; text-transform:uppercase; color:var(--color-accent)">Doctoral research</span>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:clamp(24px,4vw,56px); margin-top:16px; align-items:start">
+        <div>
+          <h3 style="margin:0; font-family:var(--font-heading); font-weight:500; font-size:clamp(24px,3vw,34px); line-height:1.15; letter-spacing:-0.018em">Thunder: a private cloud architecture designed for high usability</h3>
+          <div class="research-weather" data-ambient="" aria-hidden="true">
+            <div class="research-cloud"></div>
+            <span class="research-rain" style="--rain-x:0px; --rain-delay:-.2s"></span>
+            <span class="research-rain" style="--rain-x:22px; --rain-delay:-.8s"></span>
+            <span class="research-rain" style="--rain-x:48px; --rain-delay:-.4s"></span>
+            <span class="research-rain" style="--rain-x:72px; --rain-delay:-1s"></span>
+            <span class="research-bolt"></span>
+          </div>
+          <p style="margin:16px 0 0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 80%, transparent)">My dissertation asked how underfunded and understaffed organizations—especially schools, libraries, and nonprofit medical facilities—could gain the cost benefits of private cloud computing without the deployment and management burden of a general-purpose platform.</p>
+          <p style="margin:16px 0 0; font-size:14px; line-height:1.65; color:color-mix(in srgb, var(--color-text) 62%, transparent)">The name is recursive: <strong style="color:color-mix(in srgb, var(--color-text) 82%, transparent)">THUNDER Helps Underfunded Nonprofits Distribute Electronic Resources.</strong></p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:18px">
+          <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 72%, transparent)">I designed and built a vertically integrated IaaS system that used PXE booting and preseeding for automated deployment, multicast discovery and a custom RPC layer for zero-touch node registration, and libvirt for virtual-machine orchestration. Controller, compute, and storage services could be expanded without interrupting the running cloud.</p>
+          <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 72%, transparent)">The research introduced RAIN—Rating Assisted Instantiation Negotiation—a scheduler that ranked compute nodes from real-time load metrics. Experiments found that it improved VM placement and avoided hardware over-utilization, especially in heterogeneous clusters, with the explicit tradeoff of slower placement decisions.</p>
+          <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 72%, transparent)">In comparative deployment studies, inexperienced users preferred Thunder's deployment model to OpenStack and Eucalyptus. The architecture also supported low-cost thin clients, browser-based guest access, and classroom teaching of virtualization, scalability, and elasticity.</p>
+          <div style="display:flex; gap:8px; flex-wrap:wrap">
+            <span class="tag tag-outline">Usability research</span>
+            <span class="tag tag-outline">RAIN scheduling</span>
+            <span class="tag tag-outline">libvirt</span>
+            <span class="tag tag-outline">PXE provisioning</span>
+            <span class="tag tag-outline">Distributed RPC</span>
+          </div>
+          <div>
+            <a class="btn btn-primary" href="/assets/gabriel-loewen-thunder-dissertation.pdf" target="_blank" rel="noopener" type="application/pdf">Read the dissertation · PDF, 10.9 MB</a>
+          </div>
+        </div>
+      </div>
+    </article>
   </section>
 
   <section id="felix" style="padding:clamp(48px,8vh,96px) var(--edge,clamp(20px,5vw,72px)); max-width:1200px; margin:0 auto">
     <div style="height:1px; background:linear-gradient(to right, transparent, var(--color-divider) 48px calc(100% - 48px), transparent); margin-bottom:clamp(40px,6vh,72px)"></div>
     <span style="font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent)">What I'm building now</span>
-    <div data-reveal="" style="display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(28px,4vw,56px); margin-top:24px">
+    <div class="project-layout" data-reveal="" style="margin-top:24px">
       <div style="display:flex; flex-direction:column; gap:20px; max-width:64ch">
         <h2 style="margin:0; font-family:var(--font-heading); font-weight:500; font-size:clamp(34px,4.6vw,60px); line-height:1.08; letter-spacing:-0.02em; margin-left:-0.04em">Felix</h2>
-        <p style="margin:0; font-size:17px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 84%, transparent)">A QUIC-based data broker in Rust: low-latency pub/sub, a key-value cache, and a durable event log with resumable subscriptions.</p>
-        <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 72%, transparent)">Built for high fanout, predictable tail latency, and strict slow-consumer isolation — one subscriber having a bad day should not become everybody's problem. A framed binary protocol over QUIC streams unifies event streaming and request/response caching, with explicit control over multiplexing, batching, and flow control. Single-node today; multi-node clustering in progress.</p>
+        <p style="margin:0; font-size:17px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 84%, transparent)">A QUIC-based distributed event and cache system in Rust: low-latency pub/sub, durable streams, multiplexed caching, and multi-broker clustering.</p>
+        <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 72%, transparent)">Streams are sharded across broker owners selected with rendezvous hashing. A publish can enter through any broker and be forwarded to the owner; subscriptions follow bounded owner redirects and resume from their last offset. Durable streams use append-only log shipping, lease-fenced leaders, Leader or Quorum consistency, and caught-up replica promotion so quorum-acknowledged records survive leader failover.</p>
+        <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 72%, transparent)">The cluster suite exercises cross-broker routing, broker loss, process suspension, fencing, failover, redirects, reconnect, and single-node/cluster conformance. The system still prioritizes high fanout, predictable tail latency, and strict slow-consumer isolation; it remains in early active development while the control plane and operational model continue to evolve.</p>
         <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:4px">
           <a class="btn btn-primary" href="https://github.com/gabloe/felix" target="_blank" rel="noopener">Source on GitHub</a>
           <a class="btn btn-ghost" href="https://gabloe.github.io/felix" target="_blank" rel="noopener">Documentation</a>
         </div>
       </div>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:1px; background:var(--color-divider); border-radius:var(--radius-md); overflow:hidden">
+      <div class="project-aside">
+        <div class="project-visual" data-ambient="" aria-hidden="true">
+          <div class="project-visual-stage">
+            <svg class="felix-diagram" viewBox="0 0 156 88">
+              <path class="felix-ground" d="M10 68 H146"></path>
+              <circle class="felix-node" cx="18" cy="68" r="2"></circle>
+              <circle class="felix-node" cx="78" cy="68" r="2"></circle>
+              <circle class="felix-node" cx="138" cy="68" r="2"></circle>
+              <g class="felix-cat">
+                <ellipse class="felix-cat-body" cx="0" cy="0" rx="20" ry="11"></ellipse>
+                <circle class="felix-cat-head" cx="-19" cy="-9" r="10"></circle>
+                <path class="felix-cat-ear" d="M-27 -15 L-25 -26 L-18 -18 Z"></path>
+                <path class="felix-cat-ear" d="M-17 -18 L-10 -25 L-10 -14 Z"></path>
+                <circle class="felix-cat-eye" cx="-22" cy="-10" r="1.4"></circle>
+                <circle class="felix-cat-eye" cx="-15" cy="-10" r="1.4"></circle>
+                <path class="felix-tail" d="M18 -3 C35 -8 34 -26 24 -27 C16 -28 14 -20 20 -17"></path>
+                <path class="felix-leg felix-leg-a" d="M-11 7 L-13 19"></path>
+                <path class="felix-leg felix-leg-b" d="M7 7 L11 19"></path>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="project-specs" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:1px; background:var(--color-divider); border-radius:var(--radius-md); overflow:hidden">
         <div style="background:var(--color-surface); padding:22px 20px; display:flex; flex-direction:column; gap:8px">
           <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">Role</span>
           <span style="font-size:17px; font-family:var(--font-heading); font-weight:500">Author</span>
@@ -185,6 +624,14 @@
         <div style="background:var(--color-surface); padding:22px 20px; display:flex; flex-direction:column; gap:8px">
           <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">Built with</span>
           <span style="font-size:17px; font-family:var(--font-heading); font-weight:500">Rust · QUIC · TLS 1.3</span>
+        </div>
+        <div style="background:var(--color-surface); padding:22px 20px; display:flex; flex-direction:column; gap:8px">
+          <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">Cluster</span>
+          <span style="font-size:17px; font-family:var(--font-heading); font-weight:500">Sharding · Routing · Failover</span>
+        </div>
+        <div style="background:var(--color-surface); padding:22px 20px; display:flex; flex-direction:column; gap:8px">
+          <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">Consistency</span>
+          <span style="font-size:17px; font-family:var(--font-heading); font-weight:500">Leader · Quorum</span>
         </div>
         <div style="background:var(--color-surface); padding:22px 20px; display:flex; flex-direction:column; gap:8px">
           <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">License</span>
@@ -195,14 +642,14 @@
           <span style="font-size:17px; font-family:var(--font-heading); font-weight:500">Early active development</span>
         </div>
       </div>
-
+      </div>
     </div>
   </section>
 
   <section id="harbor" style="padding:clamp(48px,8vh,96px) var(--edge,clamp(20px,5vw,72px)); max-width:1200px; margin:0 auto">
     <div style="height:1px; background:linear-gradient(to right, transparent, var(--color-divider) 48px calc(100% - 48px), transparent); margin-bottom:clamp(40px,6vh,72px)"></div>
     <span style="font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent)">Also built</span>
-    <div data-reveal="" style="display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(28px,4vw,48px); margin-top:24px">
+    <div class="project-layout" data-reveal="" style="margin-top:24px">
       <div style="display:flex; flex-direction:column; gap:18px; max-width:64ch">
         <h2 style="margin:0; font-family:var(--font-heading); font-weight:500; font-size:clamp(28px,3.6vw,46px); line-height:1.1; letter-spacing:-0.02em; margin-left:-0.04em">The Pale Harbor</h2>
         <p style="margin:0; font-size:17px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 84%, transparent)">A 2D psychological horror game set in a fog-shrouded coastal town, where you play the lighthouse keeper investigating your predecessor's disappearance.</p>
@@ -211,7 +658,18 @@
           <a class="btn btn-primary" href="https://github.com/gabloe/the-pale-harbor" target="_blank" rel="noopener">Source on GitHub</a>
         </div>
       </div>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:1px; background:var(--color-divider); border-radius:var(--radius-md); overflow:hidden">
+      <div class="project-aside">
+        <div class="project-visual harbor-scene" data-ambient="" aria-hidden="true">
+          <div class="project-visual-stage">
+            <span class="harbor-water"></span>
+            <span class="harbor-beam"></span>
+            <span class="harbor-lighthouse"></span>
+            <span class="harbor-fog harbor-fog-a"></span>
+            <span class="harbor-fog harbor-fog-b"></span>
+            <span class="harbor-fog harbor-fog-c"></span>
+          </div>
+        </div>
+        <div class="project-specs" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:1px; background:var(--color-divider); border-radius:var(--radius-md); overflow:hidden">
         <div style="background:var(--color-surface); padding:22px 20px; display:flex; flex-direction:column; gap:8px">
           <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">ROLE</span>
           <span style="font-size:17px; font-family:var(--font-heading); font-weight:500">Author</span>
@@ -229,27 +687,68 @@
           <span style="font-size:17px; font-family:var(--font-heading); font-weight:500">The browser</span>
         </div>
       </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="opensource" style="padding:clamp(36px,6vh,72px) var(--edge,clamp(20px,5vw,72px)) clamp(48px,8vh,96px); max-width:1200px; margin:0 auto">
+    <div style="height:1px; background:linear-gradient(to right, transparent, var(--color-divider) 48px calc(100% - 48px), transparent); margin-bottom:clamp(36px,5vh,56px)"></div>
+    <span style="font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent)">Open-source contribution</span>
+    <div class="project-layout" data-reveal="" style="margin-top:20px">
+      <div style="display:flex; flex-direction:column; gap:18px; max-width:62ch">
+        <h2 style="margin:0; font-family:var(--font-heading); font-weight:500; font-size:clamp(28px,3.6vw,44px); line-height:1.1; letter-spacing:-0.02em">PowerShell support for Jenkins durable tasks</h2>
+        <p style="margin:0; font-size:17px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 84%, transparent)">I designed and implemented PowerShell execution support for the Jenkins Durable Task plugin, which provides the long-running process layer behind Jenkins Pipeline steps.</p>
+        <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 72%, transparent)">That work grew out of an earlier role contributing to the OpenStack community by continuously validating new OpenStack releases against Windows-based Nova compute infrastructure, where cross-platform process behavior and PowerShell reliability were daily concerns.</p>
+        <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 72%, transparent)">The work covered cross-platform <code style="font:inherit; color:var(--color-accent)">pwsh</code> compatibility, reliable output capture, Unicode, exit-code and error propagation, and support for legacy PowerShell behavior.</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:4px">
+          <a class="btn btn-primary" href="https://github.com/jenkinsci/durable-task-plugin" target="_blank" rel="noopener">View plugin on GitHub</a>
+        </div>
+      </div>
+      <div class="project-aside">
+        <div class="project-visual" data-ambient="" aria-hidden="true">
+          <div class="project-visual-stage">
+            <span class="jenkins-terminal">PS&gt;<span class="jenkins-cursor"></span></span>
+            <span class="jenkins-pipeline"></span>
+            <span class="jenkins-task"></span>
+            <span class="jenkins-check">✓</span>
+          </div>
+        </div>
+        <div class="project-specs" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:1px; background:var(--color-divider); border-radius:var(--radius-md); overflow:hidden">
+        <div style="background:var(--color-surface); padding:22px 20px; display:flex; flex-direction:column; gap:8px">
+          <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">Role</span>
+          <span style="font-size:17px; font-family:var(--font-heading); font-weight:500">PowerShell support author</span>
+        </div>
+        <div style="background:var(--color-surface); padding:22px 20px; display:flex; flex-direction:column; gap:8px">
+          <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">Ecosystem</span>
+          <span style="font-size:17px; font-family:var(--font-heading); font-weight:500">Jenkins Pipeline</span>
+        </div>
+        <div style="background:var(--color-surface); padding:22px 20px; display:flex; flex-direction:column; gap:8px">
+          <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">Focus</span>
+          <span style="font-size:17px; font-family:var(--font-heading); font-weight:500">Execution · Output · Errors</span>
+        </div>
+      </div>
+      </div>
     </div>
   </section>
 
   <section id="work" style="padding:clamp(48px,8vh,96px) var(--edge,clamp(20px,5vw,72px)) clamp(64px,9vh,120px); max-width:1200px; margin:0 auto">
     <div style="height:1px; background:linear-gradient(to right, transparent, var(--color-divider) 48px calc(100% - 48px), transparent); margin-bottom:clamp(40px,6vh,72px)"></div>
     <span style="font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent)">How I work</span>
-    <h2 data-reveal="" style="margin:20px 0 0; font-family:var(--font-heading); font-weight:500; font-size:clamp(26px,3vw,36px); line-height:1.15; letter-spacing:-0.015em">Three decisions I'd defend</h2>
-    <p data-reveal="" style="margin:14px 0 0; font-size:16px; line-height:1.7; max-width:56ch; color:color-mix(in srgb, var(--color-text) 74%, transparent)">Taken from Felix, where I get to make all of them. Open one.</p>
+    <h2 data-reveal="" style="margin:20px 0 0; font-family:var(--font-heading); font-weight:500; font-size:clamp(26px,3vw,36px); line-height:1.15; letter-spacing:-0.015em">Three principles I build by</h2>
+    <p data-reveal="" style="margin:14px 0 0; font-size:16px; line-height:1.7; max-width:60ch; color:color-mix(in srgb, var(--color-text) 74%, transparent)">Lessons carried across distributed systems, doctoral research, and production open source. Open one.</p>
     <div style="display:flex; flex-direction:column; margin-top:28px">
 
       <div data-project="" data-reveal="" style="position:relative">
         <button id="decision-1-button" type="button" aria-expanded="false" aria-controls="decision-1-detail" onClick="{{ toggleDetail }}" style="width:100%; background:transparent; border:0; border-top:1px solid var(--color-neutral-800); cursor:pointer; text-align:left; color:var(--color-text); font-family:var(--font-body); padding:26px 0; display:grid; grid-template-columns:56px minmax(0,1fr) auto; gap:clamp(16px,3vw,48px); align-items:baseline; transition:opacity .2s ease" style-hover="opacity:.72">
           <span style="font-family:var(--font-heading); font-weight:500; font-size:14px; color:var(--color-accent); font-feature-settings:'tnum' 1">01</span>
           <span style="display:flex; flex-direction:column; gap:8px">
-            <span style="font-family:var(--font-heading); font-weight:500; font-size:clamp(20px,2.4vw,26px); letter-spacing:-0.012em">Fanout that encodes once</span>
-            <span style="font-size:15px; line-height:1.6; color:color-mix(in srgb, var(--color-text) 70%, transparent); max-width:52ch">A publish batch is encoded one time, no matter how many subscribers are listening.</span>
+            <span style="font-family:var(--font-heading); font-weight:500; font-size:clamp(20px,2.4vw,26px); letter-spacing:-0.012em">Backpressure belongs in the architecture</span>
+            <span style="font-size:15px; line-height:1.6; color:color-mix(in srgb, var(--color-text) 70%, transparent); max-width:52ch">A slow consumer should never be allowed to quietly become everyone else's outage.</span>
           </span>
           <span data-chev="" style="font-size:22px; line-height:1; color:var(--color-accent); transition:transform .3s ease; display:inline-block">+</span>
         </button>
         <div id="decision-1-detail" data-detail="" role="region" aria-labelledby="decision-1-button" hidden style="overflow:hidden; max-height:0; opacity:0; transition:max-height .45s ease, opacity .3s ease">
-          <p style="margin:0 0 26px; padding-left:clamp(0px,4vw,104px); font-size:15px; line-height:1.7; max-width:56ch; color:color-mix(in srgb, var(--color-text) 78%, transparent)">The broker enqueues publish jobs and fans out over a shared-frame path with dense stream handles on the hot path, so per-subscriber cost stays close to a write. Each subscription gets its own unidirectional delivery stream, and byte-budgeted admission control at both client and broker ingest keeps a slow consumer from backing up into everyone else.</p>
+          <p style="margin:0 0 26px; padding-left:clamp(0px,4vw,104px); font-size:15px; line-height:1.7; max-width:58ch; color:color-mix(in srgb, var(--color-text) 78%, transparent)">In Felix, publish batches are encoded once and shared across fanout, while each subscriber gets an isolated delivery stream. Byte-budgeted admission control at client and broker boundaries makes overload explicit and contains the cost of slow consumers instead of allowing it to spread through the system.</p>
         </div>
       </div>
 
@@ -257,13 +756,13 @@
         <button id="decision-2-button" type="button" aria-expanded="false" aria-controls="decision-2-detail" onClick="{{ toggleDetail }}" style="width:100%; background:transparent; border:0; border-top:1px solid var(--color-neutral-800); cursor:pointer; text-align:left; color:var(--color-text); font-family:var(--font-body); padding:26px 0; display:grid; grid-template-columns:56px minmax(0,1fr) auto; gap:clamp(16px,3vw,48px); align-items:baseline; transition:opacity .2s ease" style-hover="opacity:.72">
           <span style="font-family:var(--font-heading); font-weight:500; font-size:14px; color:var(--color-accent); font-feature-settings:'tnum' 1">02</span>
           <span style="display:flex; flex-direction:column; gap:8px">
-            <span style="font-family:var(--font-heading); font-weight:500; font-size:clamp(20px,2.4vw,26px); letter-spacing:-0.012em">Cache without stream setup costs</span>
-            <span style="font-size:15px; line-height:1.6; color:color-mix(in srgb, var(--color-text) 70%, transparent); max-width:52ch">Long-lived stream workers, request IDs, and multiplexing instead of a stream per request.</span>
+            <span style="font-family:var(--font-heading); font-weight:500; font-size:clamp(20px,2.4vw,26px); letter-spacing:-0.012em">Usability is a systems property</span>
+            <span style="font-size:15px; line-height:1.6; color:color-mix(in srgb, var(--color-text) 70%, transparent); max-width:52ch">A capable system still fails if its intended operators cannot deploy, understand, or recover it.</span>
           </span>
           <span data-chev="" style="font-size:22px; line-height:1; color:var(--color-accent); transition:transform .3s ease; display:inline-block">+</span>
         </button>
         <div id="decision-2-detail" data-detail="" role="region" aria-labelledby="decision-2-button" hidden style="overflow:hidden; max-height:0; opacity:0; transition:max-height .45s ease, opacity .3s ease">
-          <p style="margin:0 0 26px; padding-left:clamp(0px,4vw,104px); font-size:15px; line-height:1.7; max-width:56ch; color:color-mix(in srgb, var(--color-text) 78%, transparent)">Clients hold a connection pool of long-lived stream workers; cache requests carry a request ID and multiplex over them, and the broker answers on the same stream from a single read loop. Put and get with TTL, log-backed and durable when the broker has a storage directory — the same protocol that carries events, so there is one envelope to reason about.</p>
+          <p style="margin:0 0 26px; padding-left:clamp(0px,4vw,104px); font-size:15px; line-height:1.7; max-width:58ch; color:color-mix(in srgb, var(--color-text) 78%, transparent)">Thunder treated deployment and operation as architectural requirements: automated provisioning, zero-touch node discovery, and a deliberately smaller vertical stack. Comparative studies showed that inexperienced users preferred its deployment model to OpenStack and Eucalyptus—a reminder that operability is part of correctness.</p>
         </div>
       </div>
 
@@ -271,13 +770,13 @@
         <button id="decision-3-button" type="button" aria-expanded="false" aria-controls="decision-3-detail" onClick="{{ toggleDetail }}" style="width:100%; background:transparent; border:0; border-top:1px solid var(--color-neutral-800); cursor:pointer; text-align:left; color:var(--color-text); font-family:var(--font-body); padding:26px 0; display:grid; grid-template-columns:56px minmax(0,1fr) auto; gap:clamp(16px,3vw,48px); align-items:baseline; transition:opacity .2s ease" style-hover="opacity:.72">
           <span style="font-family:var(--font-heading); font-weight:500; font-size:14px; color:var(--color-accent); font-feature-settings:'tnum' 1">03</span>
           <span style="display:flex; flex-direction:column; gap:8px">
-            <span style="font-family:var(--font-heading); font-weight:500; font-size:clamp(20px,2.4vw,26px); letter-spacing:-0.012em">A conformance suite that keeps clients honest</span>
-            <span style="font-size:15px; line-height:1.6; color:color-mix(in srgb, var(--color-text) 70%, transparent); max-width:52ch">Shared test vectors for the wire format, so interop isn't a guessing game.</span>
+            <span style="font-family:var(--font-heading); font-weight:500; font-size:clamp(20px,2.4vw,26px); letter-spacing:-0.012em">Compatibility is a product promise</span>
+            <span style="font-size:15px; line-height:1.6; color:color-mix(in srgb, var(--color-text) 70%, transparent); max-width:52ch">Version and platform differences belong behind the interface, not in the user's workflow.</span>
           </span>
           <span data-chev="" style="font-size:22px; line-height:1; color:var(--color-accent); transition:transform .3s ease; display:inline-block">+</span>
         </button>
         <div id="decision-3-detail" data-detail="" role="region" aria-labelledby="decision-3-button" hidden style="overflow:hidden; max-height:0; opacity:0; transition:max-height .45s ease, opacity .3s ease">
-          <p style="margin:0 0 26px; padding-left:clamp(0px,4vw,104px); font-size:15px; line-height:1.7; max-width:56ch; color:color-mix(in srgb, var(--color-text) 78%, transparent)">A standalone runner validates that framing and binary encoding match the shared test vectors. Anything that passes can interoperate without relying on Rust-specific behavior — which is also why the wire protocol, client SDK and transport are Apache-2.0 while the server components are source-available under ELv2.</p>
+          <p style="margin:0 0 26px; padding-left:clamp(0px,4vw,104px); font-size:15px; line-height:1.7; max-width:58ch; color:color-mix(in srgb, var(--color-text) 78%, transparent)">For Jenkins durable tasks, PowerShell support had to preserve output, Unicode, exit codes, and error behavior across legacy Windows PowerShell and cross-platform <code style="font:inherit; color:var(--color-accent)">pwsh</code>. Compatibility work is successful when users can rely on one contract instead of learning every runtime's edge cases.</p>
         </div>
       </div>
 
@@ -288,9 +787,10 @@
     <div style="max-width:1200px; margin:0 auto; padding:clamp(56px,9vh,110px) var(--edge,clamp(20px,5vw,72px)); display:flex; flex-direction:column; gap:24px; align-items:flex-start">
       <span style="font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 70%, transparent)">Contact</span>
       <h2 data-reveal="" style="margin:0; font-family:var(--font-heading); font-weight:500; font-size:clamp(30px,4.2vw,54px); line-height:1.1; letter-spacing:-0.02em; margin-left:-0.04em">Say hello.</h2>
-      <p data-reveal="" style="margin:0; font-size:16px; line-height:1.7; max-width:48ch; color:color-mix(in srgb, var(--color-text) 82%, transparent)">Issues, pull requests and opinions about backpressure are all welcome. GitHub is the fastest way to reach me.</p>
+      <p data-reveal="" style="margin:0; font-size:16px; line-height:1.7; max-width:48ch; color:color-mix(in srgb, var(--color-text) 82%, transparent)">Issues, pull requests and opinions about backpressure are all welcome. Find my technical work on GitHub and professional background on LinkedIn.</p>
       <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:4px">
         <a class="btn btn-primary" href="https://github.com/gabloe" target="_blank" rel="noopener">github.com/gabloe</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/gabloe/" target="_blank" rel="me noopener">LinkedIn</a>
       </div>
       <p style="margin:4px 0 0; font-size:14px; color:color-mix(in srgb, var(--color-text) 62%, transparent)">Résumé available on request.</p>
     </div>
@@ -341,12 +841,14 @@ class Component extends DCLogic {
     this._sky();
     this._spy();
     this._spotlight();
+    this._ambient();
   }
 
   componentWillUnmount() {
     this._alive = false;
     if (this._io) this._io.disconnect();
     if (this._skyObserver) this._skyObserver.disconnect();
+    if (this._ambientObserver) this._ambientObserver.disconnect();
     if (this._skyRaf) cancelAnimationFrame(this._skyRaf);
     if (this._revealTimer) clearTimeout(this._revealTimer);
     if (this._onScroll) removeEventListener('scroll', this._onScroll);
@@ -578,6 +1080,21 @@ class Component extends DCLogic {
         row.removeEventListener('pointerleave', leave);
       });
     });
+  }
+
+  _ambient() {
+    const visuals = Array.from(document.querySelectorAll('[data-ambient]'));
+    if (!visuals.length) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      visuals.forEach((visual) => visual.classList.add('is-visible'));
+      return;
+    }
+    this._ambientObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle('is-visible', entry.isIntersecting);
+      });
+    }, { rootMargin: '120px 0px' });
+    visuals.forEach((visual) => this._ambientObserver.observe(visual));
   }
 
   renderVals() {
