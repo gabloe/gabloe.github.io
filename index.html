@@ -283,6 +283,86 @@
     from { transform: rotate(-13deg); }
     to { transform: rotate(13deg); }
   }
+  .canvas-scene { width: 100%; height: 100%; }
+  .canvas-frame {
+    fill: none;
+    stroke: color-mix(in srgb, var(--color-accent) 30%, transparent);
+    stroke-width: 1;
+    stroke-dasharray: 3 5;
+  }
+  .canvas-dot {
+    fill: var(--color-accent-300);
+    animation: canvas-dot-pulse 2.6s ease-in-out infinite;
+  }
+  .canvas-dot-b { animation-delay: -.85s; }
+  .canvas-dot-c { animation-delay: -1.7s; }
+  .canvas-shape {
+    fill: none;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .canvas-rect {
+    stroke: var(--color-accent-300);
+    stroke-dasharray: 138;
+    animation: canvas-draw-rect 7.2s linear infinite;
+  }
+  .canvas-ellipse {
+    stroke: color-mix(in srgb, var(--color-accent-300) 40%, var(--color-text));
+    stroke-dasharray: 82;
+    animation: canvas-draw-ellipse 7.2s linear infinite;
+  }
+  .canvas-cursor path { stroke: var(--color-surface); stroke-width: .7; }
+  .canvas-cursor-a path, .canvas-cursor-a .canvas-tag { fill: var(--color-accent-300); }
+  .canvas-cursor-b path, .canvas-cursor-b .canvas-tag {
+    fill: color-mix(in srgb, var(--color-accent-300) 40%, var(--color-text));
+  }
+  .canvas-cursor-a { animation: canvas-trace-rect 7.2s ease-in-out infinite; }
+  .canvas-cursor-b { animation: canvas-trace-ellipse 7.2s ease-in-out infinite; }
+  @keyframes canvas-dot-pulse {
+    0%, 100% { opacity: .35; }
+    50% { opacity: 1; }
+  }
+  @keyframes canvas-draw-rect {
+    0%, 5% { stroke-dashoffset: 138; opacity: 1; }
+    42%, 88% { stroke-dashoffset: 0; opacity: 1; }
+    96%, 100% { stroke-dashoffset: 0; opacity: 0; }
+  }
+  @keyframes canvas-draw-ellipse {
+    0%, 50% { stroke-dashoffset: 82; opacity: 1; }
+    82%, 88% { stroke-dashoffset: 0; opacity: 1; }
+    96%, 100% { stroke-dashoffset: 0; opacity: 0; }
+  }
+  @keyframes canvas-trace-rect {
+    0%, 5% { transform: translate(28px, 26px); }
+    16.25% { transform: translate(70px, 26px); }
+    23.5% { transform: translate(70px, 53px); }
+    34.75% { transform: translate(28px, 53px); }
+    42% { transform: translate(28px, 26px); }
+    56%, 100% { transform: translate(34px, 64px); }
+  }
+  @keyframes canvas-trace-ellipse {
+    0%, 44% { transform: translate(124px, 64px); }
+    50% { transform: translate(118px, 45px); }
+    58% { transform: translate(104px, 57px); }
+    66% { transform: translate(90px, 45px); }
+    74% { transform: translate(104px, 33px); }
+    82% { transform: translate(118px, 45px); }
+    92%, 100% { transform: translate(124px, 64px); }
+  }
+  .canvas-badge-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-accent-300);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent) 55%, transparent);
+    animation: canvas-badge-pulse 2.4s ease-out infinite;
+  }
+  @keyframes canvas-badge-pulse {
+    0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent) 55%, transparent); }
+    70% { box-shadow: 0 0 0 7px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
+  }
   .harbor-scene {
     background: linear-gradient(to bottom, #202536 0 54%, #171b28 55%);
   }
@@ -447,10 +527,15 @@
     .research-cloud, .research-rain, .research-bolt,
     .felix-cat, .felix-tail, .felix-leg,
     .harbor-beam, .harbor-fog,
+    .canvas-rect, .canvas-ellipse, .canvas-cursor-a,
+    .canvas-cursor-b, .canvas-dot, .canvas-badge-dot,
     .jenkins-cursor, .jenkins-task, .jenkins-check { animation: none !important; }
     .research-bolt { opacity: .7; }
     .jenkins-task { transform: translateX(62px); }
     .jenkins-check { opacity: 1; transform: none; }
+    .canvas-rect, .canvas-ellipse { stroke-dashoffset: 0; }
+    .canvas-cursor-a { transform: translate(34px, 64px); }
+    .canvas-cursor-b { transform: translate(124px, 64px); }
   }
 </style>
 </helmet>
@@ -463,7 +548,7 @@
   <nav class="nav site-nav" aria-label="Primary navigation" style="position:sticky; top:0; z-index:20; backdrop-filter:blur(14px); background:color-mix(in srgb, var(--color-bg) 82%, transparent)">
     <span class="nav-brand" style="letter-spacing:-0.01em">Gabriel Loewen</span>
     <a href="#about" data-spy="about" style="transition:color .25s ease, transform .25s ease" style-hover="color:var(--color-accent); transform:translateY(-2px)">About</a>
-    <a href="#felix" data-spy="felix" style="transition:color .25s ease, transform .25s ease" style-hover="color:var(--color-accent); transform:translateY(-2px)">Projects</a>
+    <a href="#canvas" data-spy="canvas" style="transition:color .25s ease, transform .25s ease" style-hover="color:var(--color-accent); transform:translateY(-2px)">Projects</a>
     <a href="#work" data-spy="work" style="transition:color .25s ease, transform .25s ease" style-hover="color:var(--color-accent); transform:translateY(-2px)">Principles</a>
     <a href="#contact" data-spy="contact" style="transition:color .25s ease, transform .25s ease" style-hover="color:var(--color-accent); transform:translateY(-2px)">Contact</a>
     <a class="btn btn-primary" href="https://github.com/gabloe" target="_blank" rel="noopener">GitHub</a>
@@ -637,6 +722,64 @@
         </div>
       </div>
     </article>
+  </section>
+
+  <section id="canvas" style="padding:clamp(48px,8vh,96px) var(--edge,clamp(20px,5vw,72px)); max-width:1200px; margin:0 auto">
+    <div style="height:1px; background:linear-gradient(to right, transparent, var(--color-divider) 48px calc(100% - 48px), transparent); margin-bottom:clamp(40px,6vh,72px)"></div>
+    <div style="display:inline-flex; align-items:center; gap:9px; padding:7px 15px 7px 12px; border-radius:999px; border:1px solid color-mix(in srgb, var(--color-accent) 40%, transparent); background:color-mix(in srgb, var(--color-accent-900) 60%, transparent); font-size:12px; letter-spacing:0.07em; text-transform:uppercase; color:var(--color-accent)"><span class="canvas-badge-dot" aria-hidden="true"></span>Next project &middot; design complete</div>
+    <div class="project-layout" data-reveal="" style="margin-top:24px">
+      <div style="display:flex; flex-direction:column; gap:18px; max-width:64ch">
+        <h2 style="margin:0; font-family:var(--font-heading); font-weight:500; font-size:clamp(28px,3.6vw,46px); line-height:1.1; letter-spacing:-0.02em; margin-left:-0.04em">Felix Canvas</h2>
+        <p style="margin:0; font-size:17px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 84%, transparent)">A multiplayer drawing canvas whose entire backend is Felix. Shapes, cursors, presence, history and snapshots all live in Felix streams and caches &mdash; no Postgres, no Redis, no Kafka beside it.</p>
+        <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 72%, transparent)">A broker does not argue for itself, so this is the application that puts Felix's properties in front of someone who has no reason to care about brokers. A publish is encoded once and delivered to five hundred viewers &mdash; measured on Azure at over a million deliveries a second with the publisher's acknowledgement holding flat at 206 µs and nothing dropped. A throttled client keeps drawing, notices its own gap in the log and rebuilds from its last offset while the other 499 are untouched. And the whole document scrubs backwards, because the log <em>is</em> the document.</p>
+        <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 72%, transparent)">The design is finished and the build starts at the edge. Felix is QUIC end to end, so the first milestone is the gateway that brings a browser onto that path: it terminates the browser connection, exchanges an OIDC token for one narrowed to a single room, and relays frames. It stays stateless by design. A room's truth lives in the log and the cache, which is what lets any client &mdash; new, lagging or reconnecting &mdash; recover through exactly one path.</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:4px">
+          <a class="btn btn-primary" href="https://github.com/gabloe/felix-canvas" target="_blank" rel="noopener">Design on GitHub</a>
+          <a class="btn btn-ghost" href="https://github.com/gabloe/felix-canvas/blob/main/docs/design.md" target="_blank" rel="noopener">Read the design</a>
+          <a class="btn btn-ghost" href="https://github.com/gabloe/felix" target="_blank" rel="noopener">Felix</a>
+        </div>
+      </div>
+      <div class="project-aside">
+        <div class="project-visual" data-ambient="" aria-hidden="true">
+          <div class="project-visual-stage">
+            <svg class="canvas-scene" viewBox="0 0 156 88">
+              <rect class="canvas-frame" x="14" y="12" width="128" height="64" rx="5"></rect>
+              <circle class="canvas-dot canvas-dot-a" cx="122" cy="19" r="2.2"></circle>
+              <circle class="canvas-dot canvas-dot-b" cx="129" cy="19" r="2.2"></circle>
+              <circle class="canvas-dot canvas-dot-c" cx="136" cy="19" r="2.2"></circle>
+              <rect class="canvas-shape canvas-rect" x="28" y="26" width="42" height="27" rx="3"></rect>
+              <ellipse class="canvas-shape canvas-ellipse" cx="104" cy="45" rx="14" ry="12"></ellipse>
+              <g class="canvas-cursor canvas-cursor-a">
+                <path d="M0 0 L0 8 L2.1 6.1 L3.5 8.8 L4.8 8.2 L3.4 5.6 L6.1 5.3 Z"></path>
+                <rect class="canvas-tag" x="7.5" y="5.6" width="11" height="4.6" rx="2.3"></rect>
+              </g>
+              <g class="canvas-cursor canvas-cursor-b">
+                <path d="M0 0 L0 8 L2.1 6.1 L3.5 8.8 L4.8 8.2 L3.4 5.6 L6.1 5.3 Z"></path>
+                <rect class="canvas-tag" x="7.5" y="5.6" width="9" height="4.6" rx="2.3"></rect>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="project-specs" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:1px; background:var(--color-divider); border-radius:var(--radius-md); overflow:hidden">
+          <div style="background:var(--color-surface); padding:22px 20px; display:flex; flex-direction:column; gap:8px">
+            <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">Status</span>
+            <span style="font-size:17px; font-family:var(--font-heading); font-weight:500">Design complete</span>
+          </div>
+          <div style="background:var(--color-surface); padding:22px 20px; display:flex; flex-direction:column; gap:8px">
+            <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">Backend</span>
+            <span style="font-size:17px; font-family:var(--font-heading); font-weight:500">Felix, and nothing else</span>
+          </div>
+          <div style="background:var(--color-surface); padding:22px 20px; display:flex; flex-direction:column; gap:8px">
+            <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">First milestone</span>
+            <span style="font-size:17px; font-family:var(--font-heading); font-weight:500">The browser gateway</span>
+          </div>
+          <div style="background:var(--color-surface); padding:22px 20px; display:flex; flex-direction:column; gap:8px">
+            <span style="font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:color-mix(in srgb, var(--color-text) 55%, transparent)">Puts on show</span>
+            <span style="font-size:17px; font-family:var(--font-heading); font-weight:500">Fanout &middot; isolation &middot; replay</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section id="felix" style="padding:clamp(48px,8vh,96px) var(--edge,clamp(20px,5vw,72px)); max-width:1200px; margin:0 auto">
