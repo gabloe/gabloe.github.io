@@ -516,6 +516,11 @@
       height: 82px;
       margin: 10px 0 6px;
     }
+    .job-row {
+      grid-template-columns: minmax(0, 1fr) !important;
+      gap: 8px !important;
+      padding: 20px !important;
+    }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -594,7 +599,7 @@
       </div>
       <div data-reveal="" style="display:flex; flex-direction:column; gap:22px; max-width:60ch">
         <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 82%, transparent)">I've been at Microsoft since 2015, now as a principal software engineer focused entirely on the engineering system: its architecture, continuous integration, pipelines, frameworks, and services. Born and raised in the Pacific Northwest and still here; the rain is good for staying indoors and reading flame graphs.</p>
-        <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 82%, transparent)">The thread running through my broader technical work is systems at scale: distributed systems, cloud architecture, and service-oriented architecture. I build primarily in Python and Rust, and I am happiest close to the wire &mdash; protocols, transports, storage, and the moments where a system has to decide who gets slowed down. Right now that means Felix, where the rule is simple: if a guarantee cannot be enforced in code, it is not a guarantee.</p>
+        <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 82%, transparent)">The thread running through my broader technical work is systems at scale: distributed systems, cloud architecture, and service-oriented architecture. I build mostly in Python and Rust, and I gravitate toward the low-level stuff &mdash; protocols, transports, storage, the parts of a system that decide who gets slowed down when things get busy. That's what I'm working through right now with Felix: if a guarantee can't be enforced in code, it isn't a guarantee.</p>
         <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:4px">
           <span class="tag tag-outline">Rust</span>
           <span class="tag tag-outline">Python</span>
@@ -646,7 +651,7 @@
       <span style="font-size:12px; letter-spacing:0.07em; text-transform:uppercase; color:var(--color-accent)">Eleven years, four levels, one job</span>
       <p style="margin:14px 0 0; font-size:16px; line-height:1.7; max-width:64ch; color:color-mix(in srgb, var(--color-text) 78%, transparent)">The discipline has not changed: continuous integration, pipelines, frameworks, services, and the architecture that connects them &mdash; the engineering system developers use to build and validate their products. What changed is the scale: one driver, then one product, then two, then multiple product organizations.</p>
       <ol style="margin:28px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:1px; background:var(--color-divider); border-radius:var(--radius-md); overflow:hidden">
-        <li style="background:var(--color-surface); padding:24px; display:grid; grid-template-columns:minmax(150px,190px) 1fr; gap:clamp(16px,3vw,32px); align-items:baseline">
+        <li class="job-row" style="background:var(--color-surface); padding:24px; display:grid; grid-template-columns:minmax(150px,190px) 1fr; gap:clamp(16px,3vw,32px); align-items:baseline">
           <span style="display:block; font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent); font-feature-settings:'tnum' 1">Aug 2015 &mdash; Mar 2016</span>
           <span>
             <strong style="display:block; font-family:var(--font-heading); font-weight:500; font-size:19px; letter-spacing:-0.012em">Software Engineer</strong>
@@ -654,7 +659,7 @@
             <span style="display:block; margin-top:10px; font-size:15px; line-height:1.65; color:color-mix(in srgb, var(--color-text) 72%, transparent)">Continuous integration, testing, and metrics for the OpenStack Hyper-V driver. I had interned on that CI Lab team the summer before, building the tooling that measured which submitted patches passed and which broke, then came back to own it. The Jenkins PowerShell contribution further down this page came out of this work: a gap in the tooling I needed, fixed upstream rather than worked around.</span>
           </span>
         </li>
-        <li style="background:var(--color-surface); padding:24px; display:grid; grid-template-columns:minmax(150px,190px) 1fr; gap:clamp(16px,3vw,32px); align-items:baseline">
+        <li class="job-row" style="background:var(--color-surface); padding:24px; display:grid; grid-template-columns:minmax(150px,190px) 1fr; gap:clamp(16px,3vw,32px); align-items:baseline">
           <span style="display:block; font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent); font-feature-settings:'tnum' 1">Mar 2016 &mdash; Dec 2020</span>
           <span>
             <strong style="display:block; font-family:var(--font-heading); font-weight:500; font-size:19px; letter-spacing:-0.012em">Software Engineer II</strong>
@@ -662,7 +667,7 @@
             <span style="display:block; margin-top:10px; font-size:15px; line-height:1.65; color:color-mix(in srgb, var(--color-text) 72%, transparent)">Nearly five years on the continuous integration systems, pipelines, and frameworks that Azure Stack was built and validated on. Hybrid infrastructure ships into a customer&rsquo;s datacentre, which changes what an escaped defect costs and therefore what the pipeline has to catch.</span>
           </span>
         </li>
-        <li style="background:var(--color-surface); padding:24px; display:grid; grid-template-columns:minmax(150px,190px) 1fr; gap:clamp(16px,3vw,32px); align-items:baseline">
+        <li class="job-row" style="background:var(--color-surface); padding:24px; display:grid; grid-template-columns:minmax(150px,190px) 1fr; gap:clamp(16px,3vw,32px); align-items:baseline">
           <span style="display:block; font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent); font-feature-settings:'tnum' 1">Dec 2020 &mdash; Aug 2024</span>
           <span>
             <strong style="display:block; font-family:var(--font-heading); font-weight:500; font-size:19px; letter-spacing:-0.012em">Senior Software Engineer</strong>
@@ -670,7 +675,7 @@
             <span style="display:block; margin-top:10px; font-size:15px; line-height:1.65; color:color-mix(in srgb, var(--color-text) 72%, transparent)">The same discipline across two hybrid-cloud products at once, as Azure Stack HCI &mdash; now Azure Local &mdash; grew up alongside Hub. Two products sharing engineering systems is where the pipelines stop being a product&rsquo;s tooling and start being a platform.</span>
           </span>
         </li>
-        <li style="background:var(--color-surface); padding:24px; display:grid; grid-template-columns:minmax(150px,190px) 1fr; gap:clamp(16px,3vw,32px); align-items:baseline">
+        <li class="job-row" style="background:var(--color-surface); padding:24px; display:grid; grid-template-columns:minmax(150px,190px) 1fr; gap:clamp(16px,3vw,32px); align-items:baseline">
           <span style="display:block; font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent); font-feature-settings:'tnum' 1">Aug 2024 &mdash; present</span>
           <span>
             <strong style="display:block; font-family:var(--font-heading); font-weight:500; font-size:19px; letter-spacing:-0.012em">Principal Software Engineer</strong>
