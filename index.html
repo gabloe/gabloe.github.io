@@ -193,6 +193,26 @@
     85%, 89% { opacity: 1; }
     86%, 90% { opacity: .25; }
   }
+  .flamegraph {
+    position: relative;
+    width: 176px;
+    height: 64px;
+    margin: 14px 0 2px;
+    opacity: .85;
+    pointer-events: none;
+  }
+  .flamegraph-frame {
+    position: absolute;
+    left: var(--fx); bottom: var(--fy); width: var(--fw);
+    height: 13px;
+    border-radius: 3px;
+    background: var(--fc);
+  }
+  .flamegraph-frame-hot { animation: flamegraph-pulse 2.6s ease-in-out infinite; }
+  @keyframes flamegraph-pulse {
+    0%, 100% { box-shadow: 0 0 0 rgba(230,172,86,0); }
+    50% { box-shadow: 0 0 10px rgba(230,172,86,.6); }
+  }
   .project-layout {
     display: grid;
     grid-template-columns: minmax(0, 1.45fr) minmax(250px, .55fr);
@@ -516,6 +536,7 @@
       height: 82px;
       margin: 10px 0 6px;
     }
+    .flamegraph { width: 150px; margin: 10px 0 2px; }
     .job-row {
       grid-template-columns: minmax(0, 1fr) !important;
       gap: 8px !important;
@@ -599,6 +620,13 @@
       </div>
       <div data-reveal="" style="display:flex; flex-direction:column; gap:22px; max-width:60ch">
         <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 82%, transparent)">I've been at Microsoft since 2015, now as a principal software engineer focused entirely on the engineering system: its architecture, continuous integration, pipelines, frameworks, and services. Born and raised in the Pacific Northwest and still here; the rain is good for staying indoors and reading flame graphs.</p>
+        <div class="flamegraph" data-ambient="" aria-hidden="true">
+          <span class="flamegraph-frame" style="--fx:0px; --fy:0px; --fw:176px; --fc:#7a4a35"></span>
+          <span class="flamegraph-frame" style="--fx:8px; --fy:16px; --fw:118px; --fc:#a8663c"></span>
+          <span class="flamegraph-frame" style="--fx:8px; --fy:32px; --fw:54px; --fc:#c98a48"></span>
+          <span class="flamegraph-frame" style="--fx:70px; --fy:32px; --fw:48px; --fc:#c98a48"></span>
+          <span class="flamegraph-frame flamegraph-frame-hot" style="--fx:12px; --fy:48px; --fw:34px; --fc:#e6ac56"></span>
+        </div>
         <p style="margin:0; font-size:16px; line-height:1.7; color:color-mix(in srgb, var(--color-text) 82%, transparent)">The thread running through my broader technical work is systems at scale: distributed systems, cloud architecture, and service-oriented architecture. I build mostly in Python and Rust, and I gravitate toward the low-level stuff &mdash; protocols, transports, storage, the parts of a system that decide who gets slowed down when things get busy. That's what I'm working through right now with Felix: if a guarantee can't be enforced in code, it isn't a guarantee.</p>
         <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:4px">
           <span class="tag tag-outline">Rust</span>
