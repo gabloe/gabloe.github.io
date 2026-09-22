@@ -92,7 +92,7 @@
         </div>
         <div class="status-line">
           <span class="noct-dot noct-dot--pulse noct-dot--info"></span>
-          Currently building <a href="#felix">Felix</a> &mdash; a QUIC broker in Rust
+          Currently building <a href="#felix">Felix</a>, a QUIC broker in Rust
         </div>
       </div>
       <div class="terminal-window hero-terminal" aria-hidden="true">
@@ -207,7 +207,7 @@
             </div>
             <div class="noct-card__body">
               <h3 style="margin:0 0 8px; font-size:18px">Principal Software Engineer</h3>
-              <p class="prose" style="margin:0">The same discipline at broader scale, re-architected as shared services, platforms, and frameworks for multiple engineering teams. Principal is the senior individual-contributor level, so the work centers on technical vision, architecture, and leverage rather than headcount.</p>
+              <p class="prose" style="margin:0">The same discipline at broader scale, re-architected as shared services, platforms, and frameworks for multiple engineering teams. Principal is the senior individual-contributor level, so the job is technical vision and architecture, not managing people.</p>
             </div>
           </div>
         </div>
@@ -274,9 +274,9 @@
       <div class="noct-panel__body project-grid">
         <div class="stack">
           <p class="prose prose--lg">A multiplayer drawing canvas whose entire backend is Felix. Shapes, cursors, presence, history and snapshots all live in Felix streams and caches. No Postgres, no Redis, no Kafka beside it.</p>
-          <p class="prose">That list is the usual build, not a strawman. A realtime canvas is normally four systems: a WebSocket tier with sticky sessions so a room's clients reach the process holding it, Redis pub/sub to fan out when they do not, Postgres for the document of record, and Kafka added later when history turns out to matter. It works; most collaborative software you have used is built that way. But the order of truth is split across all four, and Redis pub/sub carries no offsets, so a client that misses an update has no way to learn that it did. That's why reloading the page is collaborative software's universal repair. Felix Canvas keeps the merge rule those systems already use and changes only what sits underneath: one log per room, doing the live fanout and the history both, where a missed update is a gap in offsets and therefore something the client can notice and fix.</p>
+          <p class="prose">A realtime canvas is normally four systems: a WebSocket tier with sticky sessions so a room's clients reach the process holding it, Redis pub/sub to fan out when they do not, Postgres for the document of record, and Kafka added later when history turns out to matter. It works; most collaborative software you have used is built that way. But the order of truth is split across all four, and Redis pub/sub carries no offsets, so a client that misses an update has no way to learn that it did. That's why reloading the page is collaborative software's universal repair. Felix Canvas keeps the merge rule those systems already use and changes only what sits underneath: one log per room, doing the live fanout and the history both, where a missed update is a gap in offsets and therefore something the client can notice and fix.</p>
           <p class="prose">A broker does not argue for itself, so this is the application that puts Felix's properties in front of someone who has no reason to care about brokers. A publish is encoded once and delivered to five hundred viewers, measured on Azure at over a million deliveries a second with the publisher's acknowledgement holding flat at 206&nbsp;&micro;s and nothing dropped. A throttled client keeps drawing, notices its own gap in the log and rebuilds from its last offset while the other 499 are untouched. And the whole document scrubs backwards, because the log <em>is</em> the document.</p>
-          <p class="prose">The design is finished and the build starts at the edge. Felix is QUIC end to end, so the first milestone is the gateway that brings a browser onto that path: it terminates the browser connection, exchanges an <span class="noct-tooltip"><span class="term-hint">OIDC</span><span class="noct-tooltip__bubble noct-tooltip__bubble--top" role="tooltip">OpenID Connect &mdash; identity on top of OAuth 2.0</span></span> token for one narrowed to a single room, and relays frames. It stays stateless by design. A room's truth lives in the log and the cache, which is what lets any client (new, lagging, or reconnecting) recover through exactly one path.</p>
+          <p class="prose">The design is finished and the build starts at the edge. Felix is QUIC end to end, so the first milestone is the gateway that brings a browser onto that path: it terminates the browser connection, exchanges an <span class="noct-tooltip"><span class="term-hint">OIDC</span><span class="noct-tooltip__bubble noct-tooltip__bubble--top" role="tooltip">OpenID Connect, built on OAuth 2.0</span></span> token for one narrowed to a single room, and relays frames. It stays stateless by design. A room's truth lives in the log and the cache, which is what lets any client (new, lagging, or reconnecting) recover through exactly one path.</p>
           <div class="row">
             <a class="noct-btn noct-btn--danger" href="https://github.com/gabloe/felix-canvas" target="_blank" rel="noopener">Design on GitHub</a>
             <a class="noct-btn noct-btn--secondary" href="https://github.com/gabloe/felix-canvas/blob/main/docs/design.md" target="_blank" rel="noopener">Read the design</a>
