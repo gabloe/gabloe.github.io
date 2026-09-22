@@ -132,9 +132,13 @@ section[id] { scroll-margin-top: 64px; }
 
 /* — work history — */
 .job-list { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+.job-list .noct-card__header { flex-wrap: wrap; row-gap: 6px; }
+.job-list .noct-card__title { flex: 1 1 auto; min-width: 0; }
+.job-list .noct-badge { flex: none; }
 
 /* — two-column project layout — */
 .project-grid { display: grid; grid-template-columns: minmax(0,1.4fr) minmax(240px,.6fr); gap: clamp(32px,6vw,72px); align-items: start; }
+.project-grid--about { grid-template-columns: minmax(0,1fr) minmax(220px,.7fr); }
 .project-aside { display: flex; flex-direction: column; gap: 16px; }
 .project-visual {
   position: relative;
