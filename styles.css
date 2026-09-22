@@ -45,7 +45,11 @@ section[id] { scroll-margin-top: 64px; }
 .row--tags { display: flex; flex-wrap: wrap; gap: 8px; }
 
 /* — hero — */
-.hero-inner { position: relative; display: flex; flex-direction: column; gap: 28px; align-items: flex-start; }
+.hero-inner {
+  position: relative; display: flex; gap: clamp(32px,5vw,64px);
+  align-items: center; flex-wrap: wrap;
+}
+.hero-content { display: flex; flex-direction: column; gap: 28px; align-items: flex-start; flex: 1 1 420px; min-width: 0; }
 .status-line {
   display: flex; align-items: center; gap: 10px;
   font-family: var(--noct-font-mono); font-size: 12px; letter-spacing: 0.04em;
@@ -53,6 +57,98 @@ section[id] { scroll-margin-top: 64px; }
 }
 .status-line a { color: var(--noct-info); }
 .status-line a:hover { text-shadow: var(--noct-glow-info); }
+
+/* — hero terminal window: desktop only, real screens are noisy enough
+   without a second column fighting the intro copy on a phone — */
+.hero-terminal { display: none; }
+@media (min-width: 960px) {
+  .hero-terminal { display: block; }
+}
+
+.terminal-window {
+  width: 100%; max-width: 460px; flex: 1 1 380px;
+  border: var(--noct-border-hairline) solid var(--noct-border-strong);
+  background: var(--noct-ink-900);
+}
+.terminal-window__bar {
+  display: flex; align-items: center; gap: 7px;
+  padding: 8px 12px;
+  border-bottom: var(--noct-border-hairline) solid var(--noct-border);
+  background: var(--noct-surface);
+}
+.terminal-window__dot { width: 9px; height: 9px; border-radius: 50%; background: var(--noct-border-strong); }
+.terminal-window__dot--danger { background: var(--noct-danger); }
+.terminal-window__dot--primary { background: var(--noct-primary); }
+.terminal-window__dot--success { background: var(--noct-success); }
+.terminal-window__title {
+  margin-left: 6px; font-family: var(--noct-font-mono); font-size: 11px;
+  letter-spacing: 0.04em; color: var(--noct-text-dim);
+}
+.terminal-window__body {
+  padding: 16px 18px;
+  font-family: var(--noct-font-mono); font-size: 13px; line-height: 1.9;
+  color: var(--noct-text-muted);
+}
+.terminal-window__prompt { color: var(--noct-primary); margin-right: 6px; }
+.tw-spacer { height: 1.9em; }
+.terminal-cursor {
+  display: inline-block; width: 7px; height: 13px;
+  background: var(--noct-primary); margin-left: 3px; vertical-align: -2px;
+  animation: terminal-blink 1s steps(1) infinite;
+}
+@keyframes terminal-blink { 50% { opacity: 0; } }
+
+/* — code typing loop: each line is its own overflow-clipped box whose
+   width steps from 0 to 100% during its slice of one shared 8s cycle,
+   so they type in sequence, hold, then the whole thing resets and
+   repeats — nonstop, no JS. steps(N) = the line's character count. — */
+.tw-line {
+  display: block; overflow: hidden; white-space: nowrap;
+  width: 0; max-width: 100%;
+  animation-duration: 8s; animation-iteration-count: infinite;
+}
+.tw-line--1 { animation-name: tw-l1; animation-timing-function: steps(28); }
+.tw-line--2 { animation-name: tw-l2; animation-timing-function: steps(11); }
+.tw-line--3 { animation-name: tw-l3; animation-timing-function: steps(26); }
+.tw-line--4 { animation-name: tw-l4; animation-timing-function: steps(26); }
+.tw-line--5 { animation-name: tw-l5; animation-timing-function: steps(26); }
+.tw-line--6 { animation-name: tw-l6; animation-timing-function: steps(30); }
+@keyframes tw-l1 {
+  0%, 2% { width: 0; }
+  13% { width: 100%; }
+  85% { width: 100%; }
+  88%, 100% { width: 0; }
+}
+@keyframes tw-l2 {
+  0%, 13% { width: 0; }
+  17% { width: 100%; }
+  85% { width: 100%; }
+  88%, 100% { width: 0; }
+}
+@keyframes tw-l3 {
+  0%, 17% { width: 0; }
+  27% { width: 100%; }
+  85% { width: 100%; }
+  88%, 100% { width: 0; }
+}
+@keyframes tw-l4 {
+  0%, 27% { width: 0; }
+  37% { width: 100%; }
+  85% { width: 100%; }
+  88%, 100% { width: 0; }
+}
+@keyframes tw-l5 {
+  0%, 37% { width: 0; }
+  47% { width: 100%; }
+  85% { width: 100%; }
+  88%, 100% { width: 0; }
+}
+@keyframes tw-l6 {
+  0%, 47% { width: 0; }
+  57% { width: 100%; }
+  85% { width: 100%; }
+  88%, 100% { width: 0; }
+}
 
 /* — a glitch flicker on the section markers, hover only — */
 .noct-panel__index { transition: text-shadow .1s ease; cursor: default; }
@@ -111,7 +207,36 @@ section[id] { scroll-margin-top: 64px; }
 .letter:hover {
   transform: translateY(-10px);
   color: var(--noct-primary);
-  text-shadow: var(--noct-glow-primary);
+  text-shadow: 2px 0 var(--noct-info), -2px 0 var(--noct-danger);
+}
+
+/* — shared glitch language: RGB-split shadow + a brief jitter, hover-only — */
+@keyframes glitch-jitter {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 1px); }
+  40% { transform: translate(2px, -1px); }
+  60% { transform: translate(-1px, 0); }
+  80% { transform: translate(1px, 1px); }
+  100% { transform: translate(0); }
+}
+.noct-topbar__link {
+  transition: text-shadow .15s ease;
+}
+.noct-topbar__link:hover {
+  text-shadow: 1px 0 var(--noct-info), -1px 0 var(--noct-danger);
+}
+.noct-panel__title {
+  display: inline-block;
+  transition: text-shadow .15s ease;
+}
+.noct-panel__title:hover {
+  text-shadow: 2px 0 var(--noct-info), -2px 0 var(--noct-danger);
+  animation: glitch-jitter .3s steps(2) 1;
+}
+.decision-title { display: inline-block; transition: text-shadow .15s ease; }
+.noct-disclosure__summary:hover .decision-title {
+  text-shadow: 2px 0 var(--noct-info), -2px 0 var(--noct-danger);
+  animation: glitch-jitter .3s steps(2) 1;
 }
 
 /* — portrait — */
@@ -368,7 +493,9 @@ section[id] { scroll-margin-top: 64px; }
   .felix-cat, .felix-tail, .felix-leg,
   .harbor-beam, .harbor-fog,
   .canvas-rect, .canvas-ellipse, .canvas-cursor-a, .canvas-cursor-b, .canvas-dot,
-  .jenkins-cursor, .jenkins-task, .jenkins-check { animation: none !important; }
+  .jenkins-cursor, .jenkins-task, .jenkins-check,
+  .tw-line, .terminal-cursor, .noct-stat--cyan { animation: none !important; }
+  .tw-line { width: 100% !important; }
   .research-bolt { opacity: .7; }
   .jenkins-task { transform: translateX(62px); }
   .jenkins-check { opacity: 1; transform: none; }

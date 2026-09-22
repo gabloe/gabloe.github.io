@@ -79,19 +79,39 @@
 
   <section id="top" class="page-section page-section--hero noct-grid-lines">
     <div class="hero-inner reveal">
-      <span class="eyebrow"><span class="eyebrow__rule"></span>Principal software engineer &middot; Ph.D.</span>
-      <h1 class="hero-title" aria-label="Gabriel Loewen">
-        <span style="display:block" aria-hidden="true"><span class="letter">G</span><span class="letter">a</span><span class="letter">b</span><span class="letter">r</span><span class="letter">i</span><span class="letter">e</span><span class="letter">l</span></span>
-        <span style="display:block" aria-hidden="true"><span class="letter">L</span><span class="letter">o</span><span class="letter">e</span><span class="letter">w</span><span class="letter">e</span><span class="letter">n</span></span>
-      </h1>
-      <p class="prose prose--lg" style="max-width:54ch">Eleven years at Microsoft, building the CI, pipelines, frameworks, and services that help developers build, test, validate, and release complex products. My broader expertise is where systems meet scale: distributed systems, cloud architecture, and service-oriented architecture.</p>
-      <div class="row">
-        <a class="noct-btn noct-btn--primary" href="#about">About me</a>
-        <a class="noct-btn noct-btn--secondary" href="https://github.com/gabloe" target="_blank" rel="noopener">GitHub</a>
+      <div class="hero-content">
+        <span class="eyebrow"><span class="eyebrow__rule"></span>Principal software engineer &middot; Ph.D.</span>
+        <h1 class="hero-title" aria-label="Gabriel Loewen">
+          <span style="display:block" aria-hidden="true"><span class="letter">G</span><span class="letter">a</span><span class="letter">b</span><span class="letter">r</span><span class="letter">i</span><span class="letter">e</span><span class="letter">l</span></span>
+          <span style="display:block" aria-hidden="true"><span class="letter">L</span><span class="letter">o</span><span class="letter">e</span><span class="letter">w</span><span class="letter">e</span><span class="letter">n</span></span>
+        </h1>
+        <p class="prose prose--lg" style="max-width:54ch">Eleven years at Microsoft, building the CI, pipelines, frameworks, and services that help developers build, test, validate, and release complex products. My broader expertise is where systems meet scale: distributed systems, cloud architecture, and service-oriented architecture.</p>
+        <div class="row">
+          <a class="noct-btn noct-btn--primary" href="#about">About me</a>
+          <a class="noct-btn noct-btn--secondary" href="https://github.com/gabloe" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <div class="status-line">
+          <span class="noct-dot noct-dot--pulse noct-dot--info"></span>
+          Currently building <a href="#felix">Felix</a> &mdash; a QUIC broker in Rust
+        </div>
       </div>
-      <div class="status-line">
-        <span class="noct-dot noct-dot--pulse noct-dot--info"></span>
-        Currently building <a href="#felix">Felix</a> &mdash; a QUIC broker in Rust
+      <div class="terminal-window hero-terminal" aria-hidden="true">
+        <div class="terminal-window__bar">
+          <span class="terminal-window__dot terminal-window__dot--danger"></span>
+          <span class="terminal-window__dot terminal-window__dot--primary"></span>
+          <span class="terminal-window__dot terminal-window__dot--success"></span>
+          <span class="terminal-window__title">gabriel@systems: ~</span>
+        </div>
+        <div class="terminal-window__body">
+          <div class="tw-line tw-line--1"><span class="terminal-window__prompt">$</span> felix-cluster up --nodes 3</div>
+          <div class="tw-line tw-line--2">cluster up.</div>
+          <div class="tw-spacer"></div>
+          <div class="tw-line tw-line--3">broker-0&nbsp;&nbsp;&nbsp;127.0.0.1:53348</div>
+          <div class="tw-line tw-line--4">broker-1&nbsp;&nbsp;&nbsp;127.0.0.1:65027</div>
+          <div class="tw-line tw-line--5">broker-2&nbsp;&nbsp;&nbsp;127.0.0.1:50410</div>
+          <div class="tw-spacer"></div>
+          <div class="tw-line tw-line--6">shard night-city/0 -&gt; broker-2<span class="terminal-cursor"></span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -458,7 +478,7 @@
           <summary class="noct-disclosure__summary">
             <span class="noct-disclosure__caret">&#9654;</span>
             <span style="flex:1">
-              <strong style="display:block; font-family:var(--noct-font-display); font-weight:600; font-size:18px">Backpressure belongs in the architecture</strong>
+              <strong class="decision-title" style="display:block; font-family:var(--noct-font-display); font-weight:600; font-size:18px">Backpressure belongs in the architecture</strong>
               <span class="prose--sm" style="display:block; margin-top:4px">A slow consumer should never be allowed to quietly become everyone else's outage.</span>
             </span>
           </summary>
@@ -471,7 +491,7 @@
           <summary class="noct-disclosure__summary">
             <span class="noct-disclosure__caret">&#9654;</span>
             <span style="flex:1">
-              <strong style="display:block; font-family:var(--noct-font-display); font-weight:600; font-size:18px">Usability is a systems property</strong>
+              <strong class="decision-title" style="display:block; font-family:var(--noct-font-display); font-weight:600; font-size:18px">Usability is a systems property</strong>
               <span class="prose--sm" style="display:block; margin-top:4px">A capable system still fails if its intended operators cannot deploy, understand, or recover it.</span>
             </span>
           </summary>
@@ -484,7 +504,7 @@
           <summary class="noct-disclosure__summary">
             <span class="noct-disclosure__caret">&#9654;</span>
             <span style="flex:1">
-              <strong style="display:block; font-family:var(--noct-font-display); font-weight:600; font-size:18px">Compatibility is a product promise</strong>
+              <strong class="decision-title" style="display:block; font-family:var(--noct-font-display); font-weight:600; font-size:18px">Compatibility is a product promise</strong>
               <span class="prose--sm" style="display:block; margin-top:4px">Version and platform differences belong behind the interface, not in the user's workflow.</span>
             </span>
           </summary>
