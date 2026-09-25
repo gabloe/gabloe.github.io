@@ -58,13 +58,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/nocturne.css">
 <link rel="stylesheet" href="/styles.css">
+<script src="/hud.js" defer></script>
 </head>
-<body class="noct noct-root noct-bg-wash noct-scanlines">
+<body class="noct noct-root">
 <a class="skip-link" href="#main-content">Skip to content</a>
 
 <header class="noct-topbar" aria-label="Primary navigation">
   <div class="noct-topbar__inner">
     <a class="noct-topbar__brand" href="#top">Gabriel<span>Loewen</span></a>
+    <span class="hud-readout" aria-hidden="true"></span>
     <nav class="noct-topbar__nav">
       <a class="noct-topbar__link" href="#about">About</a>
       <a class="noct-topbar__link" href="#canvas">Projects</a>
@@ -77,7 +79,7 @@
 
 <main id="main-content">
 
-  <section id="top" class="page-section page-section--hero noct-grid-lines">
+  <section id="top" class="page-section page-section--hero">
     <div class="hero-inner reveal">
       <div class="hero-content">
         <span class="eyebrow"><span class="eyebrow__rule"></span>Principal software engineer &middot; Ph.D.</span>
@@ -95,22 +97,26 @@
           Currently building <a href="#felix">Felix</a>, a QUIC broker in Rust
         </div>
       </div>
-      <div class="terminal-window hero-terminal" aria-hidden="true">
-        <div class="terminal-window__bar">
-          <span class="terminal-window__dot terminal-window__dot--danger"></span>
-          <span class="terminal-window__dot terminal-window__dot--primary"></span>
-          <span class="terminal-window__dot terminal-window__dot--success"></span>
-          <span class="terminal-window__title">gabriel@systems: ~</span>
-        </div>
-        <div class="terminal-window__body">
-          <div class="tw-line tw-line--1"><span class="terminal-window__prompt">$</span> felix-cluster up --nodes 3</div>
-          <div class="tw-line tw-line--2">cluster up.</div>
-          <div class="tw-spacer"></div>
-          <div class="tw-line tw-line--3">broker-0&nbsp;&nbsp;&nbsp;127.0.0.1:53348</div>
-          <div class="tw-line tw-line--4">broker-1&nbsp;&nbsp;&nbsp;127.0.0.1:65027</div>
-          <div class="tw-line tw-line--5">broker-2&nbsp;&nbsp;&nbsp;127.0.0.1:50410</div>
-          <div class="tw-spacer"></div>
-          <div class="tw-line tw-line--6">shard night-city/0 -&gt; broker-2<span class="terminal-cursor"></span></div>
+      <div class="hero-terminal" aria-hidden="true">
+        <div class="terminal-window">
+          <div class="terminal-window__bar">
+            <span class="terminal-window__tag">TTY-0</span>
+            <span class="terminal-window__title">gabriel@night-city: ~/felix</span>
+            <span class="terminal-window__live">LIVE</span>
+          </div>
+          <div class="terminal-window__body">
+            <div class="tw-line tw-line--1"><span class="terminal-window__prompt">&raquo;</span> felix-cluster up --nodes 3</div>
+            <div class="tw-line tw-line--2 tw-ok">cluster up.</div>
+            <div class="tw-spacer"></div>
+            <div class="tw-line tw-line--3">broker-0&nbsp;&nbsp;&nbsp;<span class="tw-addr">127.0.0.1:53348</span>&nbsp;&nbsp;<span class="tw-ok">OK</span></div>
+            <div class="tw-line tw-line--4">broker-1&nbsp;&nbsp;&nbsp;<span class="tw-addr">127.0.0.1:65027</span>&nbsp;&nbsp;<span class="tw-ok">OK</span></div>
+            <div class="tw-line tw-line--5">broker-2&nbsp;&nbsp;&nbsp;<span class="tw-addr">127.0.0.1:50410</span>&nbsp;&nbsp;<span class="tw-ok">OK</span></div>
+            <div class="tw-spacer"></div>
+            <div class="tw-line tw-line--6">shard <span class="tw-hot">night-city/0</span> -&gt; broker-2<span class="terminal-cursor"></span></div>
+          </div>
+          <div class="terminal-window__foot">
+            <span>QUIC</span><span>3/3 nodes</span><span>shards 1</span>
+          </div>
         </div>
       </div>
     </div>
@@ -528,7 +534,7 @@
     </div>
   </section>
 
-  <section id="contact" class="page-section noct-grid-lines">
+  <section id="contact" class="page-section">
     <hr class="page-rule">
     <div class="stack" style="align-items:flex-start">
       <span class="eyebrow">Contact</span>
