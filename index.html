@@ -279,7 +279,7 @@
 
   <section id="canvas" class="page-section section--magenta">
     <hr class="page-rule">
-    <span class="noct-badge noct-badge--magenta" style="margin-bottom:16px">Next project &middot; design started</span>
+    <span class="noct-badge noct-badge--magenta" style="margin-bottom:16px">Next project &middot; design complete</span>
     <div class="noct-panel noct-panel--magenta reveal" style="margin-top:16px">
       <div class="noct-panel__head">
         <span class="noct-panel__index">&sect;04</span>
@@ -287,10 +287,10 @@
       </div>
       <div class="noct-panel__body project-grid">
         <div class="stack">
-          <p class="prose prose--lg">A multiplayer drawing canvas whose entire backend is Felix. Shapes, cursors, presence, history and snapshots all live in Felix streams and caches. No Postgres, no Redis, no Kafka beside it.</p>
+          <p class="prose prose--lg">A multiplayer drawing canvas whose entire backend is Felix. Shapes, cursors, presence, history and snapshots all live in Felix streams, caches and queues. No Postgres, no Redis, no Kafka beside it.</p>
           <p class="prose">A realtime canvas is normally four systems: a WebSocket tier with sticky sessions so a room's clients reach the process holding it, Redis pub/sub to fan out when they do not, Postgres for the document of record, and Kafka added later when history turns out to matter. It works; most collaborative software you have used is built that way. But the order of truth is split across all four, and Redis pub/sub carries no offsets, so a client that misses an update has no way to learn that it did. That's why reloading the page is collaborative software's universal repair. Felix Canvas keeps the merge rule those systems already use and changes only what sits underneath: one log per room, doing the live fanout and the history both, where a missed update is a gap in offsets and therefore something the client can notice and fix.</p>
           <p class="prose">A broker does not argue for itself, so this is the application that puts Felix's properties in front of someone who has no reason to care about brokers. A publish is encoded once and delivered to five hundred viewers, measured on Azure at over a million deliveries a second with the publisher's acknowledgement holding flat at 206&nbsp;&micro;s and nothing dropped. A throttled client keeps drawing, notices its own gap in the log and rebuilds from its last offset while the other 499 are untouched. And the whole document scrubs backwards, because the log <em>is</em> the document.</p>
-          <p class="prose">The design is finished and the build starts at the edge. Felix is QUIC end to end, so the first milestone is the gateway that brings a browser onto that path: it terminates the browser connection, exchanges an <span class="noct-tooltip"><span class="term-hint">OIDC</span><span class="noct-tooltip__bubble noct-tooltip__bubble--top" role="tooltip">OpenID Connect, built on OAuth 2.0</span></span> token for one narrowed to a single room, and relays frames. It stays stateless by design. A room's truth lives in the log and the cache, which is what lets any client (new, lagging, or reconnecting) recover through exactly one path.</p>
+          <p class="prose">The design is finished and the build starts at the edge. Felix is QUIC end to end, so the first milestone is a WebSocket gateway that brings a browser onto that path and relays publish and subscribe for a room. It stays stateless by design. A room's truth lives in the log and the cache, which is what lets any client (new, lagging, or reconnecting) recover through exactly one path. Per-room access arrives later in the plan, when the gateway exchanges an <span class="noct-tooltip"><span class="term-hint">OIDC</span><span class="noct-tooltip__bubble noct-tooltip__bubble--top" role="tooltip">OpenID Connect, built on OAuth 2.0</span></span> token for one narrowed to a single room and the broker enforces it.</p>
           <div class="row">
             <a class="noct-btn noct-btn--danger" href="https://github.com/gabloe/felix-canvas" target="_blank" rel="noopener">Design on GitHub</a>
             <a class="noct-btn noct-btn--secondary" href="https://github.com/gabloe/felix-canvas/blob/main/docs/design.md" target="_blank" rel="noopener">Read the design</a>
@@ -319,13 +319,13 @@
             </div>
           </div>
           <div class="noct-progress noct-progress--magenta" style="margin-bottom:12px">
-            <div class="noct-progress__row"><span>Idea &rarr; Ship</span><span>Design</span></div>
+            <div class="noct-progress__row"><span>Idea &rarr; Ship</span><span>Design done</span></div>
             <div class="noct-progress__track"><div class="noct-progress__fill" style="width:25%"></div></div>
           </div>
           <div class="spec-list">
-            <div class="noct-card"><div class="noct-card__body"><span>Status</span><span>Design started</span></div></div>
+            <div class="noct-card"><div class="noct-card__body"><span>Status</span><span>Design complete &middot; build next</span></div></div>
             <div class="noct-card"><div class="noct-card__body"><span>Backend</span><span>Felix, and nothing else</span></div></div>
-            <div class="noct-card"><div class="noct-card__body"><span>First milestone</span><span>The browser gateway</span></div></div>
+            <div class="noct-card"><div class="noct-card__body"><span>First milestone</span><span>WebSocket gateway</span></div></div>
             <div class="noct-card"><div class="noct-card__body"><span>Puts on show</span><span>Fanout &middot; isolation &middot; replay</span></div></div>
           </div>
         </div>
@@ -342,11 +342,10 @@
       </div>
       <div class="noct-panel__body project-grid">
         <div class="stack">
-          <p class="prose prose--lg">A <span class="noct-tooltip"><span class="term-hint">QUIC</span><span class="noct-tooltip__bubble noct-tooltip__bubble--top" role="tooltip">Encrypted, multiplexed transport over UDP</span></span>-based distributed event and cache system in Rust: low-latency pub/sub, durable streams, multiplexed caching, and multi-broker clustering.</p>
-          <p class="prose">It exists because some questions don't yield to reading about them. What does backpressure actually cost when one subscriber falls behind and the others aren't supposed to notice? Is a cache genuinely just a log with different semantics on top? Where does that claim break? What happens to an in-flight publish at the moment a leader's lease expires? Felix is where I find out, and the answers arrive as benchmarks and failing tests rather than as opinions.</p>
-          <p class="prose">Streams are sharded across broker owners selected with rendezvous hashing. A publish can enter through any broker and be forwarded to the owner; subscriptions follow bounded owner redirects and resume from their last offset. Durable streams use append-only log shipping, lease-fenced leaders, Leader or Quorum consistency, and caught-up replica promotion so quorum-acknowledged records survive leader failover.</p>
-          <p class="prose">Cluster metadata replicates through a Raft group embedded in the control plane, so surviving the loss of an instance no longer requires an external database; Postgres still works for deployments that prefer it. The cluster suite covers cross-broker routing, broker loss, process suspension, fencing, failover, redirects, reconnect, and single-node/cluster conformance, and the Raft suite adds a killed leader and a wiped volume. It remains in early active development.</p>
-          <p class="prose">The numbers below were measured on an Azure cluster rather than on loopback, with Microsoft Entra checking every token on the publish path. Fanout is what the design is for: a publish is encoded once and shared with every subscriber, so adding 500 of them left the publisher's acknowledgement roughly where it started, around 206&nbsp;&micro;s. Ingest scales the way the design intends: horizontally. A second broker took the cluster to 2.1&times; with nothing tuned. Profiling then put a number on the headroom still on the table: one QUIC endpoint task per broker gates the receive path, so a single core sets the pace while the rest of the machine stays free, and encryption (the obvious culprit) turned out to be ~8% of broker CPU against ~22% for that path. More receive endpoints per broker is what that measurement bought. Against Redpanda on the same hardware, both acknowledging from memory, Felix held a p99 of 224&nbsp;&micro;s while Redpanda's tail reached tens of milliseconds behind its periodic flush; that gap narrows on faster disks, so it says more about a common deployment than about either engine.</p>
+          <p class="prose prose--lg">A <span class="noct-tooltip"><span class="term-hint">QUIC</span><span class="noct-tooltip__bubble noct-tooltip__bubble--top" role="tooltip">Encrypted, multiplexed transport over UDP</span></span>-based replicated log in Rust, read three ways: streams for pub/sub and durable history, caches for the latest value of a key, and queues for consumer groups with ack, redelivery and dead-lettering.</p>
+          <p class="prose">I started it to answer questions I couldn't settle by reading. What does backpressure cost when one subscriber falls behind? Is a cache really just a log with different semantics? What happens to an in-flight publish when a leader's lease expires? The answers come back as benchmarks and failing tests.</p>
+          <p class="prose">Streams and caches are sharded across brokers with bounded-load rendezvous hashing. Any broker accepts a publish and forwards it to the owner, subscriptions resume from their last offset, and leaders are lease-fenced, with Leader or Quorum consistency so a quorum-acknowledged record survives failover. Shards can move between live brokers: the cutover takes tens of milliseconds, and publishes that arrive mid-move are held and forwarded. Cluster metadata sits in an embedded Raft group. The test suites kill, suspend, partition and wipe nodes. There are Rust, Python and TypeScript clients on crates.io, PyPI and npm. Kafka producers and consumers can also talk to it directly, though consumer groups and transactions are refused, so Connect and Streams won't run on it.</p>
+          <p class="prose">Fanout is what it's built for. A publish is encoded once and shared by every subscriber, and with 500 subscribers the publisher's acknowledgement stayed around 206&nbsp;&micro;s. A second broker gave 2.1&times; the ingest with no tuning. Profiling put the per-broker ceiling in the single QUIC receive task (~22% of CPU), not in encryption (~8%). On the same hardware as Redpanda, with both acknowledging from memory, Felix's p99 was 224&nbsp;&micro;s and Redpanda's was 70 to 136&nbsp;ms.</p>
           <div class="stat-grid" aria-label="Selected Felix benchmark results">
             <div class="noct-stat noct-stat--cyan">
               <div class="noct-stat__value">181&nbsp;&micro;s</div>
@@ -367,12 +366,12 @@
           </div>
           <div class="noct-alert noct-alert--info">
             <div class="noct-alert__head"><span class="noct-alert__tag">[Method]</span><span class="noct-alert__title">How these numbers were measured</span></div>
-            <div class="noct-alert__body">Three 4-vCPU Azure brokers (D4as_v5) in one availability zone, QUIC with TLS 1.3, and real Microsoft Entra ID verifying every token on the hot path. No loopback, no demo auth. The two message rates measure opposite directions and are not comparable to each other: one counts deliveries leaving a single broker, the other publishes arriving across the cluster. Ingest scales with brokers rather than with a broker's vCPU count (the receive path is a single task per broker), so a per-vCPU figure would mislead. Latency figures are medians of five trials. One provisioned session, so read it as a measurement rather than a leaderboard; full method and caveats on the linked page.</div>
+            <div class="noct-alert__body">Three 4-vCPU Azure brokers (D4as_v5) in one availability zone, QUIC with TLS 1.3 and real Microsoft Entra ID. No loopback, no demo auth. The two message rates count different things (deliveries out of one broker, publishes into the cluster), so don't compare them. Latencies are medians of five trials from one provisioned session. The 2.1&times; figure is from a separate run on 8-vCPU NVMe brokers, and Redpanda's tail is shorter on NVMe. The linked page has the full method.</div>
           </div>
           <div class="row">
             <a class="noct-btn noct-btn--cyan" href="https://github.com/gabloe/felix" target="_blank" rel="noopener">Source on GitHub</a>
-            <a class="noct-btn noct-btn--secondary" href="https://github.com/gabloe/felix/blob/main/docs/design.md" target="_blank" rel="noopener">Read the design</a>
-            <a class="noct-btn noct-btn--secondary" href="https://github.com/gabloe/felix/blob/main/docs/benchmarks.md" target="_blank" rel="noopener">Full benchmark method</a>
+            <a class="noct-btn noct-btn--secondary" href="https://github.com/gabloe/felix/blob/main/docs/architecture.md" target="_blank" rel="noopener">Read the architecture</a>
+            <a class="noct-btn noct-btn--secondary" href="https://gabloe.github.io/felix/features/real-network-performance/" target="_blank" rel="noopener">Full benchmark method</a>
           </div>
         </div>
         <div class="project-aside">
@@ -400,10 +399,11 @@
           <div class="spec-list">
             <div class="noct-card"><div class="noct-card__body"><span>Role</span><span>Author</span></div></div>
             <div class="noct-card"><div class="noct-card__body"><span>Built with</span><span>Rust &middot; QUIC &middot; TLS 1.3</span></div></div>
-            <div class="noct-card"><div class="noct-card__body"><span>Cluster</span><span>Sharding &middot; Routing &middot; Failover</span></div></div>
+            <div class="noct-card"><div class="noct-card__body"><span>Reads as</span><span>Streams &middot; Caches &middot; Queues</span></div></div>
+            <div class="noct-card"><div class="noct-card__body"><span>Cluster</span><span>Sharding &middot; Failover &middot; Rebalancing</span></div></div>
             <div class="noct-card"><div class="noct-card__body"><span>Consistency</span><span>Leader &middot; Quorum</span></div></div>
-            <div class="noct-card"><div class="noct-card__body"><span>License</span><span style="font-variant-numeric:tabular-nums">Apache-2.0 &middot; AGPL-3.0</span></div></div>
-            <div class="noct-card"><div class="noct-card__body"><span>Status</span><span>Early active dev</span></div></div>
+            <div class="noct-card"><div class="noct-card__body"><span>License</span><span style="font-variant-numeric:tabular-nums">AGPL-3.0 server &middot; Apache-2.0 clients</span></div></div>
+            <div class="noct-card"><div class="noct-card__body"><span>Status</span><span>Early active dev &middot; v0.5.0</span></div></div>
           </div>
         </div>
       </div>
