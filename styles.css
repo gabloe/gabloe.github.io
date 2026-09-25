@@ -11,7 +11,95 @@
 }
 
 html { scroll-behavior: smooth; }
-body { text-wrap: pretty; }
+body { margin: 0; text-wrap: pretty; }
+
+/* — page backdrop — layered on fixed pseudo-elements so the glows,
+   grid, grain and scanlines all stack (noct-bg-wash and noct-scanlines
+   each set background-image, so only one of them could ever show).
+   --ambient is the accent of the section being read; hud.js sets it and
+   the registered property lets it cross-fade. — */
+@property --ambient { syntax: "<color>"; inherits: true; initial-value: #fcee0a; }
+@property --hud-mix { syntax: "<percentage>"; inherits: true; initial-value: 0%; }
+
+body.noct { background: var(--noct-bg); --ambient: var(--noct-primary); transition: --ambient .9s ease; }
+body.noct::before,
+body.noct::after {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+}
+/* neon pools that take on the current section's accent */
+body.noct::before {
+  background:
+    radial-gradient(ellipse 70% 45% at 50% -8%, color-mix(in srgb, var(--ambient) 10%, transparent), transparent 70%),
+    radial-gradient(ellipse 45% 55% at 105% 90%, color-mix(in srgb, var(--ambient) 8%, transparent), transparent 70%),
+    radial-gradient(ellipse 40% 50% at -5% 60%, rgba(var(--noct-info-rgb), .05), transparent 70%),
+    linear-gradient(180deg, var(--noct-black), var(--noct-ink-900));
+}
+/* vignette, scanlines, grain and a grid that fades out mid-screen */
+body.noct::after {
+  --grid: color-mix(in srgb, var(--ambient) 5%, transparent);
+  background:
+    radial-gradient(ellipse 120% 90% at 50% 45%, transparent 55%, rgba(0, 0, 0, .7) 100%),
+    repeating-linear-gradient(to bottom, transparent 0 2px, rgba(255, 255, 255, .025) 2px 3px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    linear-gradient(var(--grid) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / 48px 48px;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, .35) 45%, rgba(0, 0, 0, .35) 70%, #000 100%);
+          mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, .35) 45%, rgba(0, 0, 0, .35) 70%, #000 100%);
+}
+
+/* — HUD topbar: scroll progress along the bottom edge, plus a readout
+   of the section in view (both driven by hud.js) — */
+.noct-topbar__inner { gap: 16px; }
+.noct-topbar::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px;
+  background: var(--ambient); box-shadow: 0 0 8px var(--ambient);
+  transform-origin: left; transform: scaleX(var(--scroll-progress, 0));
+}
+.hud-readout {
+  margin: 0 auto 0 8px; min-width: 0;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-family: var(--noct-font-mono); font-size: 11px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--noct-text-dim);
+}
+.hud-readout b { color: var(--ambient); font-weight: 700; margin-right: 8px; }
+.noct-topbar__link[aria-current="location"] { color: var(--ambient); text-shadow: 0 0 8px var(--ambient); }
+@media (max-width: 480px) { .hud-readout { display: none; } }
+
+/* — HUD frames — panels get a top-right bracket, a chamfer line across
+   the bottom-right corner and hairline edges (no clip-path, which would
+   also clip tooltips; the wash is transparent there anyway); cards light up their cut corners. Both
+   brighten on hover via --hud-mix. — */
+.noct-panel {
+  --hud-mix: 45%;
+  --hud-c: color-mix(in srgb, var(--section-accent) var(--hud-mix), transparent);
+  --hud-line: color-mix(in srgb, var(--section-accent) calc(var(--hud-mix) / 3), transparent);
+  background:
+    linear-gradient(var(--hud-c), var(--hud-c)) right top / 22px 2px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) right top / 2px 22px no-repeat,
+    linear-gradient(to top left, transparent calc(50% - 1px), var(--hud-c) calc(50% - 1px) calc(50% + 1px), transparent calc(50% + 1px)) right bottom / 20px 20px no-repeat,
+    linear-gradient(var(--hud-line), var(--hud-line)) right top / 1px calc(100% - 20px) no-repeat,
+    linear-gradient(var(--hud-line), var(--hud-line)) left bottom / calc(100% - 20px) 1px no-repeat,
+    linear-gradient(95deg, color-mix(in srgb, var(--section-accent) 4%, transparent), color-mix(in srgb, var(--section-accent) 1.5%, transparent) 25%, transparent 60%);
+  transition: --hud-mix .35s ease;
+}
+.noct-panel:hover, .noct-panel:focus-within { --hud-mix: 100%; }
+
+.noct-card {
+  --hud-mix: 30%;
+  --hud-c: color-mix(in srgb, var(--section-accent) var(--hud-mix), transparent);
+  --hud-cut: linear-gradient(to bottom left, transparent calc(50% - 1px), var(--hud-c) calc(50% - 1px) calc(50% + 1px), transparent calc(50% + 1px));
+  background:
+    var(--hud-cut) right top / var(--noct-clip-corner) var(--noct-clip-corner) no-repeat,
+    var(--hud-cut) left bottom / var(--noct-clip-corner) var(--noct-clip-corner) no-repeat,
+    var(--noct-surface);
+  transition: border-color .3s ease, box-shadow .3s ease, --hud-mix .3s ease;
+}
+.noct-card:hover {
+  --hud-mix: 100%;
+  border-color: color-mix(in srgb, var(--section-accent) 55%, transparent);
+  box-shadow: inset 0 0 22px color-mix(in srgb, var(--section-accent) 10%, transparent);
+}
+
 section[id] { scroll-margin-top: 64px; }
 
 .skip-link {
@@ -65,36 +153,82 @@ section[id] { scroll-margin-top: 64px; }
   .hero-terminal { display: block; }
 }
 
-.terminal-window {
+/* the filter lives on the wrapper: filter runs before clip-path, so on
+   the clipped window itself the glow and glitch split would be cut off */
+.hero-terminal {
   width: 100%; max-width: 460px; flex: 1 1 380px;
-  border: var(--noct-border-hairline) solid var(--noct-border-strong);
-  background: var(--noct-ink-900);
+  filter: drop-shadow(0 0 18px rgba(var(--noct-primary-rgb), .12));
+  animation: tw-glitch 8s steps(1, end) infinite;
+}
+.terminal-window {
+  --tw-cut: 14px;
+  --tw-chamfer: linear-gradient(to bottom left, transparent calc(50% - .75px), rgba(var(--noct-primary-rgb), .45) calc(50% - .75px) calc(50% + .75px), transparent calc(50% + .75px));
+  position: relative;
+  background:
+    var(--tw-chamfer) right top / var(--tw-cut) var(--tw-cut) no-repeat,
+    var(--tw-chamfer) left bottom / var(--tw-cut) var(--tw-cut) no-repeat,
+    repeating-linear-gradient(to bottom, transparent 0 2px, rgba(var(--noct-info-rgb), .035) 2px 3px),
+    radial-gradient(ellipse 90% 70% at 30% 40%, rgba(var(--noct-info-rgb), .07), transparent 70%),
+    var(--noct-ink-900);
+  clip-path: polygon(0 0, calc(100% - var(--tw-cut)) 0, 100% var(--tw-cut), 100% 100%, var(--tw-cut) 100%, 0 calc(100% - var(--tw-cut)));
+}
+/* hairline frame; the clip trims its corners and --tw-chamfer fills
+   in the diagonals */
+.terminal-window::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  padding: 1px;
+  background: rgba(var(--noct-primary-rgb), .45);
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
 }
 .terminal-window__bar {
-  display: flex; align-items: center; gap: 7px;
-  padding: 8px 12px;
-  border-bottom: var(--noct-border-hairline) solid var(--noct-border);
-  background: var(--noct-surface);
+  display: flex; align-items: center; gap: 10px;
+  padding: 6px 12px 6px 0;
+  background: var(--noct-primary); color: #000;
+  font-family: var(--noct-font-mono); font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
 }
-.terminal-window__dot { width: 9px; height: 9px; border-radius: 50%; background: var(--noct-border-strong); }
-.terminal-window__dot--danger { background: var(--noct-danger); }
-.terminal-window__dot--primary { background: var(--noct-primary); }
-.terminal-window__dot--success { background: var(--noct-success); }
-.terminal-window__title {
-  margin-left: 6px; font-family: var(--noct-font-mono); font-size: 11px;
-  letter-spacing: 0.04em; color: var(--noct-text-dim);
+.terminal-window__tag {
+  padding: 1px 8px 1px 12px;
+  background: #000; color: var(--noct-primary);
+  clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+}
+.terminal-window__title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-transform: none; letter-spacing: .04em; }
+.terminal-window__live { display: inline-flex; align-items: center; gap: 6px; }
+.terminal-window__live::before {
+  content: ""; width: 7px; height: 7px; background: var(--noct-danger);
+  box-shadow: 0 0 6px var(--noct-danger);
+  animation: terminal-blink 1.4s steps(1) infinite;
 }
 .terminal-window__body {
   padding: 16px 18px;
   font-family: var(--noct-font-mono); font-size: 13px; line-height: 1.9;
-  color: var(--noct-text-muted);
+  color: color-mix(in srgb, var(--noct-info) 70%, var(--noct-text));
+  text-shadow: 0 0 6px rgba(var(--noct-info-rgb), .45);
 }
-.terminal-window__prompt { color: var(--noct-primary); margin-right: 6px; }
+.terminal-window__prompt { color: var(--noct-primary); margin-right: 6px; text-shadow: 0 0 6px rgba(var(--noct-primary-rgb), .6); }
+.tw-addr { color: var(--noct-text-dim); text-shadow: none; }
+.tw-ok { color: var(--noct-success); text-shadow: 0 0 6px rgba(var(--noct-success-rgb), .55); }
+.tw-hot { color: var(--noct-danger); text-shadow: 0 0 6px rgba(var(--noct-danger-rgb), .55); }
 .tw-spacer { height: 1.9em; }
+.terminal-window__foot {
+  display: flex; gap: 18px; padding: 7px 18px 9px;
+  border-top: 1px solid rgba(var(--noct-primary-rgb), .25);
+  font-family: var(--noct-font-mono); font-size: 10px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--noct-text-dim);
+}
+.terminal-window__foot span::before { content: "\25B8  "; color: var(--noct-primary); }
 .terminal-cursor {
   display: inline-block; width: 7px; height: 13px;
   background: var(--noct-primary); margin-left: 3px; vertical-align: -2px;
+  box-shadow: 0 0 8px var(--noct-primary);
   animation: terminal-blink 1s steps(1) infinite;
+}
+/* a short RGB-split jolt right as the typing loop wipes and restarts */
+@keyframes tw-glitch {
+  0%, 84.5%, 87%, 88.5%, 100% { transform: none; filter: drop-shadow(0 0 18px rgba(var(--noct-primary-rgb), .12)); }
+  85% { transform: translate(-3px, 1px) skewX(-2deg); filter: drop-shadow(3px 0 0 rgba(var(--noct-danger-rgb), .8)) drop-shadow(-3px 0 0 rgba(var(--noct-info-rgb), .8)); }
+  85.8% { transform: translate(4px, -1px); filter: drop-shadow(-2px 0 0 rgba(var(--noct-danger-rgb), .7)) drop-shadow(2px 0 0 rgba(var(--noct-info-rgb), .7)); }
+  88% { transform: translateX(2px); filter: drop-shadow(2px 0 0 rgba(var(--noct-danger-rgb), .6)); }
 }
 @keyframes terminal-blink { 50% { opacity: 0; } }
 
@@ -109,9 +243,9 @@ section[id] { scroll-margin-top: 64px; }
 }
 .tw-line--1 { animation-name: tw-l1; animation-timing-function: steps(28); }
 .tw-line--2 { animation-name: tw-l2; animation-timing-function: steps(11); }
-.tw-line--3 { animation-name: tw-l3; animation-timing-function: steps(26); }
-.tw-line--4 { animation-name: tw-l4; animation-timing-function: steps(26); }
-.tw-line--5 { animation-name: tw-l5; animation-timing-function: steps(26); }
+.tw-line--3 { animation-name: tw-l3; animation-timing-function: steps(30); }
+.tw-line--4 { animation-name: tw-l4; animation-timing-function: steps(30); }
+.tw-line--5 { animation-name: tw-l5; animation-timing-function: steps(30); }
 .tw-line--6 { animation-name: tw-l6; animation-timing-function: steps(30); }
 @keyframes tw-l1 {
   0%, 2% { width: 0; }
@@ -520,7 +654,7 @@ section[id] { scroll-margin-top: 64px; }
   .harbor-beam, .harbor-fog,
   .canvas-rect, .canvas-ellipse, .canvas-cursor-a, .canvas-cursor-b, .canvas-dot,
   .jenkins-cursor, .jenkins-task, .jenkins-check,
-  .tw-line, .terminal-cursor, .noct-stat--cyan, .portrait::after { animation: none !important; }
+  .tw-line, .terminal-cursor, .hero-terminal, .terminal-window__live::before, .noct-stat--cyan, .portrait::after { animation: none !important; }
   .tw-line { width: 100% !important; }
   .research-bolt { opacity: .7; }
   .jenkins-task { transform: translateX(62px); }
